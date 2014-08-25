@@ -1,0 +1,2 @@
+class PusherBus < GenericBus
+end
