@@ -1,4 +1,8 @@
-class ForeignOffice::Busses::GenericBus
-  def publish(message)
+module ForeignOffice
+  module Busses
+    class GenericBus
+      def publish(message)
+      end
+    end
   end
 end

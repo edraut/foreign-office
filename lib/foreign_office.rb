@@ -5,6 +5,11 @@ module ForeignOffice
     isolate_namespace ForeignOffice
   end
 
+  module Test
+    autoload :ClientExec,  'foreign_office/test/client_exec'
+    autoload :FakeForeignOffice,  'foreign_office/test/fake_foreign_office'
+  end
+
   def self.bus=(bus)
     @bus = bus
   end
@@ -61,8 +66,6 @@ module ForeignOffice
     self.bus.publish(message)
   end
 
-  module Busses
-  end
 end
 require 'foreign_office/busses/generic_bus'
 require 'foreign_office/busses/pubnub_bus'

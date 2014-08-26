@@ -38,18 +38,20 @@ var ForeignOfficeChannel = Class.extend({
     foreign_office.connection().subscribe({
       channel : channel_name,
       backfill: true,
-      message : function(m){
-        debug_logger.log("Got a message: ");
-        debug_logger.log(m);
-        $.each(foreign_office_channel.listeners,function(i,listener){
-          debug_logger.log("sending message to listener: ");
-          debug_logger.log(listener);
-          listener.handleMessage(m);
-        });
-      }
+      message : function(m){foreign_office_channel.handleMessage(m)}
     });
     this.channel_name = channel_name;
     this.listeners = [];
+  },
+  handleMessage: function(m){
+    debug_logger.log("Got a message: ");
+    debug_logger.log(m);
+    console.log(this);
+    $.each(this.listeners,function(i,listener){
+      debug_logger.log("sending message to listener: ");
+      debug_logger.log(listener);
+      listener.handleMessage(m);
+    })
   },
   addListener: function(listener){
     this.listeners.push(listener);
