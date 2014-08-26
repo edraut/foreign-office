@@ -1,14 +1,34 @@
 class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
 
-  def self.settings
-    @settings ||= Sekrets.settings_for(Rails.root.join('config', 'pubnub.yml.enc'))
+  def self.publish_key=(publish_key)
+    @publish_key = publish_key
+  end
+
+  def self.publish_key
+    @publish_key
+  end
+
+  def self.subscribe_key=(subscribe_key)
+    @subscribe_key = subscribe_key
+  end
+
+  def self.subscribe_key
+    @subscribe_key
+  end
+
+  def self.secret_key=(secret_key)
+    @secret_key = secret_key
+  end
+
+  def self.secret_key
+    @secret_key
   end
 
   def self.connection
     @pubnub ||= ::Pubnub.new(
-      publish_key:    self.settings['PUBNUB_PUBLISH_KEY'], # publish_key only required if publishing.
-      subscribe_key:  self.settings['PUBNUB_SUBSCRIBE_KEY'], # required
-      secret_key:     self.settings['PUBNUB_SECRET_KEY'],
+      publish_key:    self.publish_key, # publish_key only required if publishing.
+      subscribe_key:  self.subscribe_key, # required
+      secret_key:     self.secret_key,
       error_callback: lambda { |msg| Rails.logger.error( msg.inspect )}
     )
   end
