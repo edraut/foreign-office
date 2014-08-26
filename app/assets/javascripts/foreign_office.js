@@ -58,8 +58,6 @@ var ForeignOfficeChannel = Class.extend({
 
 var ForeignOfficeListener = Class.extend({
   init: function($listener){
-    console.log("ForeignOfficeListener initializer:")
-    console.log($listener);
     this.$listener = $listener;
     this.endpoint = $listener.data('endpoint');
     this.object_key = $listener.data('key');
@@ -119,7 +117,6 @@ var ForeignOfficeListener = Class.extend({
     var this_listener = this;
     $('[data-foreign-office-progress-indicator="' + this.channel + '"]').each(function(){
       this_listener.foreign_office_progress_indicator = $(this).data('foreign-office-progress-indicator-object');
-      console.log($(this).data());
       this_listener.foreign_office_flash = $(this).data('ajax-foreign-office-flash').notice;
     })
   },
@@ -133,7 +130,7 @@ var ForeignOfficeListener = Class.extend({
   }
 });
 
-var ForeignNewListItems = ForeignOfficeListener.extend({
+var ForeignOfficeNewListItems = ForeignOfficeListener.extend({
   handleMessage: function(m){
     var $listener = this.$listener;
     $.get(m.object[this.object_key], function(data){
@@ -194,15 +191,12 @@ var AnyTimeManager = Class.extend({
       var data_attribute = this['data_attribute'];
       var base_class = this['base_class'];
       var this_method = this['load_method'];
-      console.log(this_method);
       $('[data-' + data_attribute + ']').each(function(){
         if('instantiate' == this_method){
           var declared_class = $(this).data(data_attribute);
           var this_class = getSubClass(declared_class,base_class);
           any_time_manager.instantiate($(this),this_class);
         }else{
-          console.log('running...')
-          console.log(base_class);
           any_time_manager.run($(this),base_class,this_method);
         }
 
