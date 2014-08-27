@@ -1,5 +1,11 @@
 class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
 
+  def self.config(config)
+    self.publish_key = config[:publish_key]
+    self.subscribe_key = config[:subscribe_key]
+    self.secret_key = config[:secret_key]
+  end
+
   def self.publish_key=(publish_key)
     @publish_key = publish_key
   end

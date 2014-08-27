@@ -10,6 +10,12 @@ module ForeignOffice
     autoload :FakeForeignOffice,  'foreign_office/test/fake_foreign_office'
   end
 
+  def self.config(config)
+    self.bus = config[:bus][:klass]
+    self.bus.config(config[:bus])
+    @publish_method = config[:publish_method]
+  end
+
   def self.bus=(bus)
     @bus = bus
   end

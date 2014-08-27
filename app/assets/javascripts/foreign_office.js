@@ -1,16 +1,15 @@
 //= require debug_logger
+//= require pubnub_bus
+//= require pusher_bus
+
 var ForeignOffice = Class.extend({
   init: function(){
-    this.pubnub = PUBNUB.init({
-      publish_key   : 'pub-c-1146120f-14f7-4649-9dee-3b21a519d573',
-      subscribe_key : 'sub-c-9d1b308c-a5f1-11e2-87b3-12313f022c90',
-      ssl           : true
-    });
     this.channels = [];
     this.channels_by_name = [];
   },
-  connection: function(){
-    return this.pubnub;
+  config: function(config){
+    bus_class = eval(config.bus_name);
+    this.bus = new bus_class(config);
   },
   addListener: function($listener){
     var listener_class = eval(getSubClass($listener.data('listener'),'ForeignOfficeListener'));
@@ -35,10 +34,11 @@ foreign_office = new ForeignOffice();
 var ForeignOfficeChannel = Class.extend({
   init: function(channel_name){
     var foreign_office_channel = this;
-    foreign_office.connection().subscribe({
+    foreign_office.bus.subscribe({
       channel : channel_name,
-      backfill: true,
-      message : function(m){foreign_office_channel.handleMessage(m)}
+      callback : function(m){
+        foreign_office_channel.handleMessage(m)
+      }
     });
     this.channel_name = channel_name;
     this.listeners = [];
@@ -46,7 +46,6 @@ var ForeignOfficeChannel = Class.extend({
   handleMessage: function(m){
     debug_logger.log("Got a message: ");
     debug_logger.log(m);
-    console.log(this);
     $.each(this.listeners,function(i,listener){
       debug_logger.log("sending message to listener: ");
       debug_logger.log(listener);
