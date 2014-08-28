@@ -1,0 +1,288 @@
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMeAgain", "object"=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {"channel"=>"TestMe", "object"=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMeAgain", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is another test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice#publish! attempt: 1 message: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
+ForeignOffice.publish: {:channel=>"TestMe", :object=>{:this=>"is a test"}}
