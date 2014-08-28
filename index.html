@@ -1,37 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <title>Foreign-office by edraut</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Foreign-office by edraut</title>
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
-
-        <header>
-          <h1>Foreign-office</h1>
-          <h2>A light browser push framework that provides functionality for listeners on web clients and publishers on Rails servers. Keep your business logic on the server whenever you can!</h2>
-        </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/edraut/foreign-office/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/edraut/foreign-office/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/edraut/foreign-office" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h3>
+    <div class="wrapper">
+      <header>
+        <h1>Foreign-office</h1>
+        <p>A light browser push framework that provides functionality for listeners on web clients and publishers on Rails servers. Keep your business logic on the server whenever you can!</p>
+        <p class="view"><a href="https://github.com/edraut/foreign-office">View the Project on GitHub <small>edraut/foreign-office</small></a></p>
+        <ul>
+          <li><a href="https://github.com/edraut/foreign-office/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/edraut/foreign-office/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/edraut/foreign-office">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
 <a name="install-it" class="anchor" href="#install-it"><span class="octicon octicon-link"></span></a>Install it</h3>
 
 <p>In your gemfile:</p>
@@ -48,11 +44,7 @@
     <span class="ss">app_id</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">APP</span> <span class="no">ID</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="ss">key</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">KEY</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="ss">secret</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">SECRET</span><span class="o">&gt;</span>
-    <span class="p">},</span>
-  <span class="ss">publish_method</span><span class="p">:</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">message</span><span class="p">){</span>
-    <span class="no">ConeyIsland</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="no">ForeignOffice</span><span class="p">,</span> <span class="ss">:publish!</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="o">[</span><span class="n">message</span><span class="o">.</span><span class="n">stringify_keys!</span><span class="o">]</span><span class="p">,</span> <span class="ss">work_queue</span><span class="p">:</span> <span class="s1">'cyclone'</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">)</span>
+    <span class="p">})</span>
 </pre></div>
 
 <p>in your javascript manifest...</p>
@@ -68,8 +60,8 @@
 <span class="p">});</span>
 </pre></div>
 
-<h3>
-<a name="rather-use-pubnub-we-dont-judge" class="anchor" href="#rather-use-pubnub-we-dont-judge"><span class="octicon octicon-link"></span></a>Rather Use Pubnub? We don't judge.</h3>
+<h4>
+<a name="rather-use-pubnub-we-dont-judge" class="anchor" href="#rather-use-pubnub-we-dont-judge"><span class="octicon octicon-link"></span></a>Rather Use Pubnub? We don't judge.</h4>
 
 <div class="highlight highlight-ruby"><pre><span class="no">ForeignOffice</span><span class="o">.</span><span class="n">config</span><span class="p">(</span>
   <span class="ss">bus</span><span class="p">:</span> <span class="p">{</span>
@@ -91,25 +83,54 @@
 <span class="p">});</span>
 </pre></div>
 
+<h4>
+<a name="want-to-wrap-the-http-call-to-the-bus" class="anchor" href="#want-to-wrap-the-http-call-to-the-bus"><span class="octicon octicon-link"></span></a>want to wrap the http call to the bus?</h4>
+
+<div class="highlight highlight-ruby"><pre><span class="no">ForeignOffice</span><span class="o">.</span><span class="n">config</span><span class="p">(</span>
+  <span class="ss">bus</span><span class="p">:</span> <span class="p">{</span>
+    <span class="ss">klass</span><span class="p">:</span> <span class="no">ForeignOffice</span><span class="o">::</span><span class="no">Busses</span><span class="o">::</span><span class="no">PusherBus</span><span class="p">,</span>
+    <span class="ss">app_id</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">APP</span> <span class="no">ID</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="ss">key</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">KEY</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="ss">secret</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">SECRET</span><span class="o">&gt;</span>
+    <span class="p">}),</span>
+  <span class="ss">publish_method</span><span class="p">:</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">message</span><span class="p">){</span>
+    <span class="no">ConeyIsland</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="no">ForeignOffice</span><span class="p">,</span> <span class="ss">:publish!</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="o">[</span><span class="n">message</span><span class="o">.</span><span class="n">stringify_keys!</span><span class="o">]</span><span class="p">,</span> <span class="ss">work_queue</span><span class="p">:</span> <span class="s1">'cyclone'</span><span class="p">)</span>
+  <span class="p">})</span>
+</pre></div>
+
 <h3>
 <a name="create-a-listener" class="anchor" href="#create-a-listener"><span class="octicon octicon-link"></span></a>Create a Listener</h3>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">data-listener=</span><span class="s">"true"</span> <span class="na">data-channel=</span><span class="s">"Transaction_123"</span> <span class="na">data-key=</span><span class="s">"grand_total"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
 
 <h3>
 <a name="publish-a-message" class="anchor" href="#publish-a-message"><span class="octicon octicon-link"></span></a>Publish a message</h3>
 
+<div class="highlight highlight-ruby"><pre><span class="no">ForeignOffice</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="ss">channel</span><span class="p">:</span> <span class="s2">"Transaction_</span><span class="si">#{</span><span class="vi">@transaction</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">object</span><span class="p">:</span> <span class="p">{</span><span class="ss">grand_total</span><span class="p">:</span> <span class="vi">@transaction</span><span class="o">.</span><span class="n">grand_total</span><span class="p">})</span>
+</pre></div>
+
+<p>That's it!</p>
+
 <h3>
+<a name="want-more-integrations" class="anchor" href="#want-more-integrations"><span class="octicon octicon-link"></span></a>Want more integrations?</h3>
+
+<p>Send us your ideas. Better yet, send us a pull request on github!</p>
+
+<ul>
+<li>want a different bus?</li>
+<li>want</li>
+</ul><h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
 <p>Along with Eric Draut (<a href="https://github.com/edraut" class="user-mention">@edraut</a>), Adam Bialek (<a href="https://github.com/abialek" class="user-mention">@abialek</a>) is a core contributor.</p>
-        </section>
-
-        <footer>
-          Foreign-office is maintained by <a href="https://github.com/edraut">edraut</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+      </section>
     </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/edraut">edraut</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
   </body>
 </html>
