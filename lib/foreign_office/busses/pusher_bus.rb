@@ -1,4 +1,10 @@
-class PusherBus < GenericBus
+class ForeignOffice::Busses::PusherBus < ForeignOffice::Busses::GenericBus
+  def self.config(config)
+    self.app_id = config[:app_id]
+    self.key = config[:key]
+    self.secret = config[:secret]
+  end
+
   def self.app_id=(app_id)
     @app_id = app_id
   end

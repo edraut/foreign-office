@@ -75,3 +75,4 @@ module ForeignOffice
 end
 require 'foreign_office/busses/generic_bus'
 require 'foreign_office/busses/pubnub_bus'
+require 'foreign_office/busses/pusher_bus'
