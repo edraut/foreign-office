@@ -1,7 +1,0 @@
-#! /bin/bash
-
-set -e
-
-script/branding
-script/proof
-script/test
