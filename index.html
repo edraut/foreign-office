@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Foreign-office by edraut</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Foreign-office</h1>
+          <h2>A light browser push framework that provides functionality for listeners on web clients and publishers on Rails servers. Keep your business logic on the server whenever you can!</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/edraut/foreign-office/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/edraut/foreign-office/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/edraut/foreign-office" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h3>
+<a name="install-it" class="anchor" href="#install-it"><span class="octicon octicon-link"></span></a>Install it</h3>
+
+<p>In your gemfile:</p>
+
+<pre><code>gem 'foreign_office'
+</code></pre>
+
+<h3>
+<a name="configure-it" class="anchor" href="#configure-it"><span class="octicon octicon-link"></span></a>Configure it</h3>
+
+<div class="highlight highlight-ruby"><pre><span class="no">ForeignOffice</span><span class="o">.</span><span class="n">config</span><span class="p">(</span>
+  <span class="ss">bus</span><span class="p">:</span> <span class="p">{</span>
+    <span class="ss">klass</span><span class="p">:</span> <span class="no">ForeignOffice</span><span class="o">::</span><span class="no">Busses</span><span class="o">::</span><span class="no">PusherBus</span><span class="p">,</span>
+    <span class="ss">app_id</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">APP</span> <span class="no">ID</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="ss">key</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">KEY</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="ss">secret</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUSHER</span> <span class="no">SECRET</span><span class="o">&gt;</span>
+    <span class="p">},</span>
+  <span class="ss">publish_method</span><span class="p">:</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">message</span><span class="p">){</span>
+    <span class="no">ConeyIsland</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="no">ForeignOffice</span><span class="p">,</span> <span class="ss">:publish!</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="o">[</span><span class="n">message</span><span class="o">.</span><span class="n">stringify_keys!</span><span class="o">]</span><span class="p">,</span> <span class="ss">work_queue</span><span class="p">:</span> <span class="s1">'cyclone'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+
+<p>in your javascript manifest...</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">//= require foreign_office</span>
+</pre></div>
+
+<p>in any javscript file you like:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">foreign_office</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+  <span class="nx">bus_name</span><span class="o">:</span> <span class="s1">'PusherBus'</span><span class="p">,</span>
+  <span class="nx">key</span><span class="o">:</span> <span class="s1">'&lt;YOUR PUSHER KEY&gt;'</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="rather-use-pubnub-we-dont-judge" class="anchor" href="#rather-use-pubnub-we-dont-judge"><span class="octicon octicon-link"></span></a>Rather Use Pubnub? We don't judge.</h3>
+
+<div class="highlight highlight-ruby"><pre><span class="no">ForeignOffice</span><span class="o">.</span><span class="n">config</span><span class="p">(</span>
+  <span class="ss">bus</span><span class="p">:</span> <span class="p">{</span>
+    <span class="ss">klass</span><span class="p">:</span> <span class="no">ForeignOffice</span><span class="o">::</span><span class="no">Busses</span><span class="o">::</span><span class="no">PubnubBus</span><span class="p">,</span>
+    <span class="ss">publish_key</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUBNUB_PUBLISH_KEY</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="ss">subscribe_key</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUBNUB_SUBSCRIBE_KEY</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="ss">secret_key</span><span class="p">:</span> <span class="o">&lt;</span><span class="no">YOUR</span> <span class="no">PUBNUB_SECRET_KEY</span><span class="o">&gt;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+
+<p>in any javscript file you like:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">foreign_office</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+  <span class="nx">bus_name</span><span class="o">:</span> <span class="s1">'PubnubBus'</span><span class="p">,</span>
+  <span class="nx">publish_key</span><span class="o">:</span> <span class="s1">'&lt;YOUR PUBNUB PUBLISH KEY&gt;'</span><span class="p">,</span>
+  <span class="nx">subscribe_key</span><span class="o">:</span> <span class="s1">'&lt;YOUR PUBNUB SUBSCRIBE KEY&gt;'</span><span class="p">,</span>
+  <span class="nx">ssl</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="create-a-listener" class="anchor" href="#create-a-listener"><span class="octicon octicon-link"></span></a>Create a Listener</h3>
+
+<h3>
+<a name="publish-a-message" class="anchor" href="#publish-a-message"><span class="octicon octicon-link"></span></a>Publish a message</h3>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>Along with Eric Draut (<a href="https://github.com/edraut" class="user-mention">@edraut</a>), Adam Bialek (<a href="https://github.com/abialek" class="user-mention">@abialek</a>) is a core contributor.</p>
+        </section>
+
+        <footer>
+          Foreign-office is maintained by <a href="https://github.com/edraut">edraut</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
