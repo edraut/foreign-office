@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ## Install it
 
 In your gemfile:
@@ -30,52 +34,26 @@ foreign_office.config({
   key: '<YOUR PUSHER KEY>'
 });
 ```
-#### Rather Use Pubnub? We don't judge.
-```ruby
-ForeignOffice.config(
-  bus: {
-    klass: ForeignOffice::Busses::PubnubBus,
-    publish_key: <YOUR PUBNUB_PUBLISH_KEY>,
-    subscribe_key: <YOUR PUBNUB_SUBSCRIBE_KEY>,
-    secret_key: <YOUR PUBNUB_SECRET_KEY>
-    }
-)
-```
-and
+If you'd rather use Pubnub, see [here](http://edraut.github.io/foreign-office/pubnub_config.html).
 
-```javascript
-foreign_office.config({
-  bus_name: 'PubnubBus',
-  publish_key: '<YOUR PUBNUB PUBLISH KEY>',
-  subscribe_key: '<YOUR PUBNUB SUBSCRIBE KEY>',
-  ssl: true
-});
-```
+If you'd like to wrap each publish request so you can background it or instrument it, then see [here](http://edraut.github.io/foreign-office/publish_wrapper.html).
 
-#### want to wrap the http call to the bus?
-```ruby
-ForeignOffice.config(
-  bus: {
-    klass: ForeignOffice::Busses::PusherBus,
-    app_id: <YOUR PUSHER APP ID>,
-    key: <YOUR PUSHER KEY>,
-    secret: <YOUR PUSHER SECRET>
-    }),
-  publish_method: ->(message){
-    ConeyIsland.submit(ForeignOffice, :publish!, args: [message.stringify_keys!], work_queue: 'cyclone')
-  })
-```
 ## Let's use it!
 #### Create a Listener
 ```html
-<div data-listener="true" data-channel="Transaction_123" data-key="grand_total"></div>
+<div data-listener="true" data-channel="Transaction_123" data-key="grand_total">
+</div>
 ```
 #### Publish a message
 ```ruby
-ForeignOffice.publish(channel: "Transaction_#{@transaction.id}", object: {grand_total: @transaction.grand_total})
+ForeignOffice.publish(
+  channel: "Transaction_#{@transaction.id}",
+  object: {grand_total: @transaction.grand_total})
 ```
 
-That's it!
+After you publish, your div will show the latest grand total via browser-push. Your server can update your client on demand!
+
+See [here](http://edraut.github.io/foreign-office/ui_actions.html) for all the ui actions you can trigger when you receive a message.
 
 ## Want more integrations?
 Send us your ideas. Better yet, send us a pull request on github!
