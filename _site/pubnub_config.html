@@ -27,7 +27,27 @@
         </ul>
       </header>
       <section>
-        {{ content }}
+        <h2>Rather Use Pubnub? We don&#39;t judge.</h2>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">ForeignOffice.config(
+  bus: {
+    klass: ForeignOffice::Busses::PubnubBus,
+    publish_key: &lt;YOUR PUBNUB_PUBLISH_KEY&gt;,
+    subscribe_key: &lt;YOUR PUBNUB_SUBSCRIBE_KEY&gt;,
+    secret_key: &lt;YOUR PUBNUB_SECRET_KEY&gt;
+    }
+)
+</code></pre></div>
+<h4>in your javascript manifest...</h4>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">//= require foreign_office
+</code></pre></div>
+<h4>in any javscript file you like:</h4>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">foreign_office.config({
+  bus_name: &#39;PubnubBus&#39;,
+  publish_key: &#39;&lt;YOUR PUBNUB PUBLISH KEY&gt;&#39;,
+  subscribe_key: &#39;&lt;YOUR PUBNUB SUBSCRIBE KEY&gt;&#39;,
+  ssl: true
+});
+</code></pre></div>
       </section>
     </div>
     <footer>

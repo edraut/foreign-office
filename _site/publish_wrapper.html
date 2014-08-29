@@ -27,7 +27,26 @@
         </ul>
       </header>
       <section>
-        {{ content }}
+        <h2>want to wrap the http call to the bus?</h2>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">ForeignOffice.config(
+  bus: {
+    ...your bus configurationi here...
+    }),
+  publish_method: -&gt;(message){
+    MyInstrumenter do
+      ForeignOffice.publish! channel: &#39;exclamations_to_everyone&#39;, object: {shout_out: &#39;Hello world!&#39;}
+    end
+  })
+</code></pre></div>
+<p>You can run any code you like here, but you must eventually call ForeignOffice.publish! with the same hash containing channel and object keys as usual.
+This is good if you want to:</p>
+
+<ul>
+<li>send publish requests in a background worker (e.g. your worker system has significantly lower latency than your push bus because it&#39;s on the same local network)</li>
+<li>instrument publish requests with some special custom logging</li>
+<li>post every message you publish to Facebook (well, someone will want to, casting all good judgement to the wind)</li>
+</ul>
+
       </section>
     </div>
     <footer>

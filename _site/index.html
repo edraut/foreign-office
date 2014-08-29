@@ -17,7 +17,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Foreign-office</h1>
+        <h1><a href="/">Foreign-office</a></h1>
         <p>A light browser push framework that provides functionality for listeners on web clients and publishers on Rails servers. Keep your business logic on the server whenever you can!</p>
         <p class="view"><a href="https://github.com/edraut/foreign-office">View the Project on GitHub <small>edraut/foreign-office</small></a></p>
         <ul>
@@ -50,45 +50,24 @@
   key: &#39;&lt;YOUR PUSHER KEY&gt;&#39;
 });
 </code></pre></div>
-<h4>Rather Use Pubnub? We don&#39;t judge.</h4>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">ForeignOffice.config(
-  bus: {
-    klass: ForeignOffice::Busses::PubnubBus,
-    publish_key: &lt;YOUR PUBNUB_PUBLISH_KEY&gt;,
-    subscribe_key: &lt;YOUR PUBNUB_SUBSCRIBE_KEY&gt;,
-    secret_key: &lt;YOUR PUBNUB_SECRET_KEY&gt;
-    }
-)
-</code></pre></div>
-<p>and</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">foreign_office.config({
-  bus_name: &#39;PubnubBus&#39;,
-  publish_key: &#39;&lt;YOUR PUBNUB PUBLISH KEY&gt;&#39;,
-  subscribe_key: &#39;&lt;YOUR PUBNUB SUBSCRIBE KEY&gt;&#39;,
-  ssl: true
-});
-</code></pre></div>
-<h4>want to wrap the http call to the bus?</h4>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">ForeignOffice.config(
-  bus: {
-    klass: ForeignOffice::Busses::PusherBus,
-    app_id: &lt;YOUR PUSHER APP ID&gt;,
-    key: &lt;YOUR PUSHER KEY&gt;,
-    secret: &lt;YOUR PUSHER SECRET&gt;
-    }),
-  publish_method: -&gt;(message){
-    ConeyIsland.submit(ForeignOffice, :publish!, args: [message.stringify_keys!], work_queue: &#39;cyclone&#39;)
-  })
-</code></pre></div>
+<p>If you&#39;d rather use Pubnub, see <a href="/pubnub_config.html">here</a>.</p>
+
+<p>If you&#39;d like to wrap each publish request so you can background it or instrument it, then see <a href="/publish_wrapper.html">here</a>.</p>
+
 <h2>Let&#39;s use it!</h2>
 
 <h4>Create a Listener</h4>
-<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;div data-listener=&quot;true&quot; data-channel=&quot;Transaction_123&quot; data-key=&quot;grand_total&quot;&gt;&lt;/div&gt;
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;div data-listener=&quot;true&quot; data-channel=&quot;Transaction_123&quot; data-key=&quot;grand_total&quot;&gt;
+&lt;/div&gt;
 </code></pre></div>
 <h4>Publish a message</h4>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">ForeignOffice.publish(channel: &quot;Transaction_#{@transaction.id}&quot;, object: {grand_total: @transaction.grand_total})
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">ForeignOffice.publish(
+  channel: &quot;Transaction_#{@transaction.id}&quot;,
+  object: {grand_total: @transaction.grand_total})
 </code></pre></div>
 <p>That&#39;s it!</p>
+
+<p>See <a href="/ui_actions.html">here</a> for all the ui actions you can trigger when you receive a message.</p>
 
 <h2>Want more integrations?</h2>
 
