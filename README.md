@@ -1,7 +1,3 @@
----
-layout: default
----
-
 ## Install it
 
 In your gemfile:
