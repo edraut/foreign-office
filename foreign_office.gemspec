@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = ForeignOffice::VERSION
   s.authors     = ["Eric Draut","Adam Bialek"]
   s.email       = ["edraut@gmail.com"]
-  s.homepage    = "https://github.com/edraut/foreign-office"
+  s.homepage    = "http://http://edraut.github.io/foreign-office"
   s.summary     = "A light framework that provides functionality for listeners on web clients and publishers on ruby servers. Keep your business logic on the server whenever you can!"
   s.description = "Description of ForeignOffice."
   s.license     = "MIT"
