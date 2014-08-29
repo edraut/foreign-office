@@ -1,2 +1,6 @@
+highlighter: pygment
+markdown: redcarpet
+include:
+  [index.md]
 exclude:
   [vendor]
