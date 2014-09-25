@@ -34,9 +34,9 @@ foreign_office.config({
   key: '<YOUR PUSHER KEY>'
 });
 ```
-If you'd rather use Pubnub, see [here](/pubnub_config.html).
+If you'd rather use Pubnub, see [here](/foreign_office/pubnub_config.html).
 
-If you'd like to wrap each publish request so you can background it or instrument it, then see [here](/publish_wrapper.html).
+If you'd like to wrap each publish request so you can background it or instrument it, then see [here](/foreign_office/publish_wrapper.html).
 
 ## Let's use it!
 #### Create a Listener
@@ -53,7 +53,7 @@ ForeignOffice.publish(
 
 After you publish, your div will show the latest grand total via browser-push. Your server can update your client on demand!
 
-See [here](/ui_actions.html) for all the ui actions you can trigger when you receive a message.
+See [here](/foreign_office/ui_actions.html) for all the ui actions you can trigger when you receive a message.
 
 ## Want more integrations?
 Send us your ideas. Better yet, send us a pull request on github!
