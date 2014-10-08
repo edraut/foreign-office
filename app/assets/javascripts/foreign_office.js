@@ -1,6 +1,7 @@
 //= require debug_logger
 //= require pubnub_bus
 //= require pusher_bus
+//= require test_bus
 
 var ForeignOffice = Class.extend({
   init: function(){
@@ -8,7 +9,12 @@ var ForeignOffice = Class.extend({
     this.channels_by_name = [];
   },
   config: function(config){
-    bus_class = eval(config.bus_name);
+    third_party_busname = this.busMap(config.bus_name)
+    if (typeof(eval(third_party_busname)) != 'undefined') {
+      bus_class = eval(config.bus_name);
+    } else {
+      bus_class = TestBus
+    }
     this.bus = new bus_class(config);
   },
   addListener: function($listener){
@@ -26,6 +32,10 @@ var ForeignOffice = Class.extend({
   },
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
+  },
+  busMap: function(bus_name) {
+    var map = { PubnubBus: 'PUBNUB',
+                PusherBus: 'Pusher'}[bus_name]
   }
 });
 
