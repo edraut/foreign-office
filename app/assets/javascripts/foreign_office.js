@@ -9,10 +9,12 @@ var ForeignOffice = Class.extend({
     this.channels_by_name = [];
   },
   config: function(config){
-    third_party_busname = this.busMap(config.bus_name)
-    if (typeof(eval(third_party_busname)) != 'undefined') {
-      bus_class = eval(config.bus_name);
-    } else {
+    bus_class = eval(config.bus_name);
+    third_party_library = this.library_name_for(config.bus_name)
+    try {
+      bus_class = eval(third_party_library)
+    }
+    catch(err){
       bus_class = TestBus
     }
     this.bus = new bus_class(config);
@@ -33,9 +35,9 @@ var ForeignOffice = Class.extend({
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
   },
-  busMap: function(bus_name) {
-    var map = { PubnubBus: 'PUBNUB',
-                PusherBus: 'Pusher'}[bus_name]
+  library_name_for: function(bus_name){
+    var library_map = {PubnubBus: 'PUBNUB', PusherBus: 'Pusher'}
+    return library_map[bus_name]
   }
 });
 
@@ -44,6 +46,8 @@ foreign_office = new ForeignOffice();
 var ForeignOfficeChannel = Class.extend({
   init: function(channel_name){
     var foreign_office_channel = this;
+    debug_logger.log("Subscribing to: ");
+    debug_logger.log(channel_name);
     foreign_office.bus.subscribe({
       channel : channel_name,
       callback : function(m){

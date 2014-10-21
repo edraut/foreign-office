@@ -1,5 +1,6 @@
 var PubnubBus = Class.extend({
   init: function(config){
+    debug_logger.log("initializing pubnub js")
     this.pubnub = PUBNUB.init({
       publish_key   : config.publish_key,
       subscribe_key : config.subscribe_key,
@@ -7,9 +8,10 @@ var PubnubBus = Class.extend({
     });
   },
   subscribe: function(subscription){
+    debug_logger.log("subscribing with PubnubBus")
+    debug_logger.log(subscription)
     this.pubnub.subscribe({
       channel : subscription.channel,
-      backfill: true,
       message : function(m){subscription.callback(m)}
     });
 

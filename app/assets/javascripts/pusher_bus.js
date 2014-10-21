@@ -7,5 +7,6 @@ var PusherBus = Class.extend({
     this.channel.bind('publish', function(data){
       subscription.callback(data);
     })
-  }
+  },
+  third_party_library: 'Pusher'
 })

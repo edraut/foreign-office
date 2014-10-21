@@ -44,17 +44,16 @@ class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
     self.connection.publish(
       channel:  message[:channel],
       message:  message,
-      http_sync: true,
-      callback: lambda{|response|
-        if 0 == JSON.parse(response.instance_variable_get(:@response)).first #pubnub publishing failed
-          if attempts <= 3
-            self.publish!(message, attempts) #retry if we failed
-          else
-            Rails.logger.debug("ForeignOffice#publish! failed after #{attempts} attempts. message: #{message.inspect}")
-          end
-        end
-      }
-    )
+      http_sync: true
+    ) do |envelope|
+      if '200' != envelope.status_code.to_s
+        Rails.logger.error "ForeignOffice error esponse:"
+        Rails.logger.error envelope.message
+        Rails.logger.error envelope.channel
+        Rails.logger.error envelope.status_code
+        Rails.logger.error envelope.timetoken
+      end
+    end
   end
 
 end
