@@ -26,25 +26,25 @@ class ForeignOfficeTest < MiniTest::Unit::TestCase
         @bus.expect :publish, nil, [{channel: 'TestMe', object: {this: 'is a test'}}]
         @bus.expect :publish, nil, [{channel: 'TestMeAgain', object: {this: 'is another test'}}]
         ForeignOffice.flush_messages
-        @bus.verify      
+        @bus.verify
       end
     end
     describe "doesn't have to cache" do
-      before do
-        ForeignOffice.publish_directly
-      end
       it "publishes messages directly when not caching" do
+        ForeignOffice.publish_directly
         @bus.expect :publish, nil, [{channel: 'TestMe', object: {this: 'is a test'}}]
         ForeignOffice.publish({channel: 'TestMe', object: {this: 'is a test'}})
-        @bus.verify      
+        @bus.verify
       end
     end
     describe "offers custom publishing" do
       it "publishes with a custom method if provided" do
-        ForeignOffice.set_publish_method { |msg| p @bus.custom_publish msg }
+        ForeignOffice.publish_directly
         @bus.expect :custom_publish, nil, [{channel: 'TestMe', object: {this: 'is a test'}}]
+        ForeignOffice.set_publish_method { |msg| @bus.custom_publish msg}
         ForeignOffice.publish({channel: 'TestMe', object: {this: 'is a test'}})
-        @bus.verify      
+        @bus.verify
+        ForeignOffice.unset_publish_method
       end
     end
   end

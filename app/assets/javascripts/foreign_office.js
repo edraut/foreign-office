@@ -2,6 +2,7 @@
 //= require pubnub_bus
 //= require pusher_bus
 //= require test_bus
+//= require anytime_manager
 
 var ForeignOffice = Class.extend({
   init: function(){
@@ -10,9 +11,8 @@ var ForeignOffice = Class.extend({
   },
   config: function(config){
     bus_class = eval(config.bus_name);
-    third_party_library = this.library_name_for(config.bus_name)
     try {
-      bus_class = eval(third_party_library)
+      eval(bus_class.third_party_library)
     }
     catch(err){
       bus_class = TestBus
@@ -34,10 +34,6 @@ var ForeignOffice = Class.extend({
   },
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
-  },
-  library_name_for: function(bus_name){
-    var library_map = {PubnubBus: 'PUBNUB', PusherBus: 'Pusher'}
-    return library_map[bus_name]
   }
 });
 
@@ -178,61 +174,4 @@ var ForeignOfficeColor = ForeignOfficeListener.extend({
   }
 });
 
-//Anytime loader, needs to be extracted into its own library
-
-var AnyTimeManager = Class.extend({
-  init: function(){
-    this.loader_array = []
-  },
-  register: function(data_attribute,base_class,load_method){
-    this.loader_array.push({data_attribute: data_attribute, base_class: base_class, load_method: load_method});
-  },
-  instantiate: function(jq_obj, class_name){
-    if(!jq_obj.data('anytime_loaded')){
-      jq_obj.data('anytime_loaded',true);
-      var this_class = eval(class_name);
-      new this_class(jq_obj);
-    }
-  },
-  run: function (jq_obj, resource, method_name){
-    if(!jq_obj.data('anytime_run')){
-      jq_obj.data('anytime_run',true);
-      resource[method_name](jq_obj);
-    }
-  },
-  load: function(){
-    var any_time_manager = this;
-    $.each(any_time_manager.loader_array,function(){
-      var data_attribute = this['data_attribute'];
-      var base_class = this['base_class'];
-      var this_method = this['load_method'];
-      $('[data-' + data_attribute + ']').each(function(){
-        if('instantiate' == this_method){
-          var declared_class = $(this).data(data_attribute);
-          var this_class = getSubClass(declared_class,base_class);
-          any_time_manager.instantiate($(this),this_class);
-        }else{
-          any_time_manager.run($(this),base_class,this_method);
-        }
-
-      });
-    });
-  }
-});
-var AnytimeLoader = Class.extend({
-  init: function(jq_obj){
-    this.jq_obj = jq_obj;
-    jq_obj.data('anytime_loaded',true);
-  }
-});
-any_time_manager = new AnyTimeManager();
-$(document).ajaxComplete(function(){
-  any_time_manager.load();
-});
-$(document).ready(function(){
-  any_time_manager.load();
-});
-
-// End AnyTime library
-
-any_time_manager.register('listener',foreign_office,'addListener');
+any_time_manager.register('listener','addListener',foreign_office);

@@ -2,6 +2,7 @@
 var DebugLogger = Class.extend({
   init: function($debug_settings){
     if($debug_settings.data('logging_on')){
+      console.log('Debug logging turned on.')
       this.logging_on = true;
     } else {
       this.logging_on = false;
@@ -14,6 +15,9 @@ var DebugLogger = Class.extend({
   }
 })
 
+debug_logger = {
+  log: function(){}
+}
 $(document).ready(function(){
   if($('[data-debug_logger]')){
     jqobj = $('[data-debug_logger]');

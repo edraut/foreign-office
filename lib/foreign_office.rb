@@ -23,13 +23,17 @@ module ForeignOffice
   def self.bus
     @bus
   end
-  
+
   def self.set_publish_method(&block)
     @publish_method = block
   end
 
   def self.publish_method
     @publish_method
+  end
+
+  def self.unset_publish_method
+    @publish_method = nil
   end
 
   def self.publish(message)

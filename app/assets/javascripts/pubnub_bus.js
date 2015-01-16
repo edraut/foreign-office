@@ -17,3 +17,4 @@ var PubnubBus = Class.extend({
 
   }
 })
+PubnubBus.third_party_library = 'PUBNUB'
