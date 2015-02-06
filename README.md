@@ -1,9 +1,9 @@
 ## foreign_office
 
-## Documentation
+### Documentation
 See full documentation [here](http://edraut.github.io/foreign-office/)
 
-## Install it
+### Install it
 
 In your gemfile:
 
@@ -11,7 +11,7 @@ In your gemfile:
 gem 'foreign_office'
 ```
 
-## Configure it
+### Configure it
 ```ruby
 ForeignOffice.config(
   bus: {
@@ -39,7 +39,7 @@ If you'd rather use Pubnub, see [here](http://edraut.github.io/foreign-office/pu
 
 If you'd like to wrap each publish request so you can background it or instrument it, then see [here](http://edraut.github.io/foreign-office/publish_wrapper.html).
 
-## Let's use it!
+### Let's use it!
 #### Create a Listener
 ```html
 <div data-listener="true" data-channel="Transaction_123" data-key="grand_total">
