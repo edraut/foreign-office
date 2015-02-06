@@ -1,3 +1,8 @@
+## foreign_office
+
+## Documentation
+See full documentation [here](http://edraut.github.io/foreign-office/)
+
 ## Install it
 
 In your gemfile:
