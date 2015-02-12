@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["edraut@gmail.com"]
   s.homepage    = "http://edraut.github.io/foreign-office"
   s.summary     = "A light framework that provides functionality for listeners on web clients and publishers on ruby servers. Keep your business logic on the server whenever you can!"
-  s.description = "Description of ForeignOffice."
+  s.description = "A light framework that provides functionality for listeners on web clients and publishers on ruby servers. Keep your business logic on the server whenever you can!"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "app/assets/javascripts/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_dependency "rails", ">= 4.0.1"
   s.add_dependency "request_store"
-  
+
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "minitest"
 end
