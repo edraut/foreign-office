@@ -96,28 +96,26 @@ var ForeignOfficeListener = Class.extend({
           this.$listener.val(new_value);
         break;
 
-        case 'a':
-          if(this.$listener.data('trigger-on-message')){
-            this.$listener.attr('href',new_value);
-            if(this.progress_indicator){
-              this.progress_indicator.stop();
-            }
-            if(this.$listener.data('ajax_link')){
-              this.$listener.trigger('click');
-            }else{
-              window.location = new_value;
-            }
-          }else{
-            this.$listener.html(new_value);
-          }
-        break;
-
         case 'img':
           this.$listener.prop('src',new_value);
         break;
 
         default:
-          this.$listener.html(new_value);
+          if(this.$listener.data('trigger-on-message')){
+            if(new_value){
+              this.$listener.attr('href',new_value);
+              if(this.progress_indicator){
+                this.progress_indicator.stop();
+              }
+              if(this.$listener.data('ajax-link')){
+                this.$listener.trigger('click');
+              }else{
+                window.location = new_value;
+              }
+            }
+          }else{
+            this.$listener.html(new_value);
+          }
         break;
       }
     }
