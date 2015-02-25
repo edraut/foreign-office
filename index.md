@@ -5,13 +5,13 @@ layout: default
 ## How it works
 #### Create a listener on the client
 ```html
-<div data-listener="true" data-channel="Transaction_123" data-key="grand_total">
+<div <%= listener_attrs(@transaction,:grand_total) %>>
 </div>
 ```
 #### Publish a message from the server
 ```ruby
 ForeignOffice.publish(
-  channel: "Transaction_#{@transaction.id}",
+  channel: "Transaction#{@transaction.id}",
   object: {grand_total: @transaction.grand_total})
 ```
 

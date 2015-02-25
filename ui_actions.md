@@ -8,7 +8,7 @@ If you use the base class data-listener="true", then foreign office makes some a
 ####Replace the inner html of an element with the value published for your channel/key combo:
 
 ```html
-<div data-listener="true" data-channel="Transaction_123" data-key="grand_total">
+<div <%= listener_attrs(@transaction,:grand_total) %>>
 </div>
 ```
 This has endless uses. We use it a lot to keep an ajax-heavy page consistent when data is repeated or aggregated multiple times on a page and you don't want to write business logic about relationships on the client.
@@ -16,47 +16,46 @@ This has endless uses. We use it a lot to keep an ajax-heavy page consistent whe
 ####Update the href with the published value and click the link:
 
 ```html
-<a href="you_win.html"
-  data-listener="true"
-  data-channel="S3_report_123"
-  data-key="download_url"
+<a href="#" <%= listener_attrs(@s3_report,:download_url) %>
   data-trigger-on-message="true">
 </a>
 ```
 
 That one is handy if you generate a file in a background worker and need to make the client download as soon as it's done.
 
-####Replace an image with the one at the url provided in the published value:
+If you use [thin_man](http://edraut.github.io/thin-man/) you can also mark your link as an ajax link to have results returned ajax-wise. This is great for having a whole page section refresh or load as a side-effect of some other operation. Say you have a dashboard page for a reservation. You may add guest info as an ajax request on a guest deatils tab. If your server broadcasts the new guest info url as part of the reservation state when it changes, then the dashboard can load the new guest info summary on the overview section as an independent action.
+
 ```html
-<img src=""
-  data-listener="true"
-  data-channel="Photo_123"
-  data-key="thumbnail_url">
-</img>
+<a <%= listener_attrs(@reservation, :reload_guest_url) %> data-trigger-on-message="true" href="#" <%= ajax_link_attrs('#reservation_guest_summary') %>></a>
+<div id="reservation_guest_summary"></div>
 ```
+
+####Replace an image with the one at the url provided in the published value:
 
 We process images in the background, but would like to populate the thumbnail when it's ready.
 
+```html
+<img src="" <%= listener_attrs(@photo,:thumbnail_url) %>>
+</img>
+```
+
 ####Replace the value of a form input with the published value:
 
-```html
-<input type="number"
-  name="total"
-  data-listener="true"
-  data-channel="Transaction_123"
-  data-key="total">
-</input>
-```
 This one is useful when mutliple ajax forms exist on a page and each may affect values on the other.
 
+```html
+<input type="number" name="total" <%= listener_attrs(@transaction,:total) %>>
+```
+
 ## Can it do anything fancier than that?
+
 We're so glad you asked.
 
 ####Hide or show an element:
 
 ```html
 <div data-listener="ForeignOfficeRevealer"
-  data-channel="MyResource_123"
+  data-channel="MyResource123"
   data-key="deletable?">
   ... some delete form here ...
 </div>
