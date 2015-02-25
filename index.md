@@ -4,7 +4,7 @@ layout: default
 
 ## How it works
 #### Create a listener on the client
-```html
+```HTML+ERB
 <div <%= listener_attrs(@transaction,:grand_total) %>>
 </div>
 ```

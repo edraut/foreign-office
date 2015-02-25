@@ -7,7 +7,7 @@ If you use the base class data-listener="true", then foreign office makes some a
 
 ####Replace the inner html of an element with the value published for your channel/key combo:
 
-```html
+```HTML+ERB
 <div <%= listener_attrs(@transaction,:grand_total) %>>
 </div>
 ```
@@ -15,7 +15,7 @@ This has endless uses. We use it a lot to keep an ajax-heavy page consistent whe
 
 ####Update the href with the published value and click the link:
 
-```html
+```HTML+ERB
 <a href="#" <%= listener_attrs(@s3_report,:download_url) %>
   data-trigger-on-message="true">
 </a>
@@ -25,7 +25,7 @@ That one is handy if you generate a file in a background worker and need to make
 
 If you use [thin_man](http://edraut.github.io/thin-man/) you can also mark your link as an ajax link to have results returned ajax-wise. This is great for having a whole page section refresh or load as a side-effect of some other operation. Say you have a dashboard page for a reservation. You may add guest info as an ajax request on a guest deatils tab. If your server broadcasts the new guest info url as part of the reservation state when it changes, then the dashboard can load the new guest info summary on the overview section as an independent action.
 
-```html
+```HTML+ERB
 <a <%= listener_attrs(@reservation, :reload_guest_url) %> data-trigger-on-message="true" href="#" <%= ajax_link_attrs('#reservation_guest_summary') %>></a>
 <div id="reservation_guest_summary"></div>
 ```
@@ -34,7 +34,7 @@ If you use [thin_man](http://edraut.github.io/thin-man/) you can also mark your 
 
 We process images in the background, but would like to populate the thumbnail when it's ready.
 
-```html
+```HTML+ERB
 <img src="" <%= listener_attrs(@photo,:thumbnail_url) %>>
 </img>
 ```
@@ -43,7 +43,7 @@ We process images in the background, but would like to populate the thumbnail wh
 
 This one is useful when mutliple ajax forms exist on a page and each may affect values on the other.
 
-```html
+```HTML+ERB
 <input type="number" name="total" <%= listener_attrs(@transaction,:total) %>>
 ```
 
@@ -53,7 +53,7 @@ We're so glad you asked.
 
 ####Hide or show an element:
 
-```html
+```HTML+ERB
 <div data-listener="ForeignOfficeRevealer"
   data-channel="MyResource123"
   data-key="deletable?">
@@ -65,7 +65,7 @@ Don't let users delete an object that shouldn't be deleted, but if it's allowed,
 
 ####Add new items to a list via ajax:
 
-```html
+```HTML+ERB
 <div id="my_list"
   data-listener="ForeignOfficeNewListItems"
   data-channel="List_123"
@@ -98,7 +98,7 @@ var ForeignOfficeSquawk = ForeignOfficeListener.extend({
 });
 ```
 
-```html
+```HTML+ERB
 <div data-listener="ForeignOfficeSquawk"
   data-channel="StrangeBird"
   data-key="utterance">
