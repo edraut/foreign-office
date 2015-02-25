@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foreign_office (0.2.1)
+    foreign_office (0.4.0)
       rails (>= 4.0.1)
       request_store
 

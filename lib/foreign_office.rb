@@ -1,3 +1,4 @@
+require 'foreign_office/railtie' if defined?(Rails)
 require 'request_store'
 module ForeignOffice
 
