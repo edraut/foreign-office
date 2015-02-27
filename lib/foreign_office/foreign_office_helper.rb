@@ -12,4 +12,11 @@ module ForeignOffice
       data_attrs
     end
   end
+
+  def listener_hash(resource, key, reveal_hide: false)
+    hash = {listener: true, channel: resource.class.name + resource.id.to_s, key: key}
+    hash[:reveal_hide] = true if reveal_hide
+    hash
+  end
+
 end

@@ -71,6 +71,7 @@ var ForeignOfficeListener = Class.extend({
   init: function($listener){
     this.$listener = $listener;
     this.endpoint = $listener.data('endpoint');
+    this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
     this.delete_key = $listener.data('delete-key');
     this.channel = $listener.data('channel');
@@ -88,6 +89,14 @@ var ForeignOfficeListener = Class.extend({
       }
       if (m.object[this.delete_key] == true) {
         $listener.remove;
+      }
+    }else if(this.reveal_hide){
+      var current_value = m.object[this.object_key];
+      if(!current_value || current_value == 'false' || current_value == 'hide'){
+        this.$listener.hide();
+      } else if(current_value == true || current_value == 'true' || current_value == 'show'){
+        this.$listener.removeClass('hidden');
+        this.$listener.show();
       }
     }else{
       var new_value = m.object[this.object_key];
@@ -145,18 +154,6 @@ var ForeignOfficeNewListItems = ForeignOfficeListener.extend({
     $.get(m.object[this.object_key], function(data){
       $listener.append(data);
     })
-  }
-});
-
-var ForeignOfficeRevealer = ForeignOfficeListener.extend({
-  handleMessage: function(m){
-    var current_value = m.object[this.object_key];
-    if(!current_value || current_value == 'false' || current_value == 'hide'){
-      this.$listener.hide();
-    } else if(current_value == true || current_value == 'true' || current_value == 'show'){
-      this.$listener.removeClass('hidden');
-      this.$listener.show();
-    }
   }
 });
 
