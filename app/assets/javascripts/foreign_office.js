@@ -94,7 +94,7 @@ var ForeignOfficeListener = Class.extend({
       var current_value = m.object[this.object_key];
       if(!current_value || current_value == 'false' || current_value == 'hide'){
         this.$listener.hide();
-      } else if(current_value == true || current_value == 'true' || current_value == 'show'){
+      } else {
         this.$listener.removeClass('hidden');
         this.$listener.show();
       }
