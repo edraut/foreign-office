@@ -23,17 +23,33 @@ var ForeignOffice = Class.extend({
     var listener_class = eval(getSubClass($listener.data('listener'),'ForeignOfficeListener'));
     var listener = new listener_class($listener);
     var this_channel;
-    if($.inArray(listener.channel,this.channelNames()) == -1){
+    var this_foreign_office = this;
+    if($.inArray(listener.channel,this_foreign_office.channelNames()) == -1){
       this_channel = new ForeignOfficeChannel(listener.channel)
-      this.channels.push(this_channel);
-      this.channels_by_name[listener.channel] = this_channel;
+      this_foreign_office.channels.push(this_channel);
+      this_foreign_office.channels_by_name[listener.channel] = this_channel;
     } else {
-      var this_channel = this.channels_by_name[listener.channel];
+      var this_channel = this_foreign_office.channels_by_name[listener.channel];
     }
     this_channel.addListener(listener);
   },
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
+  },
+  connect: function(){
+    this.connection_status = 'connected';
+  },
+  disconnection: function(){
+    if('connected' == this.connection_status){
+      this.connection_status = 'disconnected'
+      alert('We lost the connection to the server. No refresh data will be available. Thanks, -the Foreign Office.')
+    }
+  },
+  reconnection: function(){
+    if('disconnected' == this.connection_status){
+      this.connection_status = 'connected'
+      alert("We're connected to the server again. Refresh data will now be available. Thanks, -the Foreign Office.")
+    }
   }
 });
 

@@ -12,7 +12,11 @@ var PubnubBus = Class.extend({
     debug_logger.log(subscription)
     this.pubnub.subscribe({
       channel : subscription.channel,
-      message : function(m){subscription.callback(m)}
+      restore : true,
+      disconnect : function(){foreign_office.disconnection(); debug_logger.log('Lost connection to: '); debug_logger.log(subscription.channel)},
+      reconnect : function(){foreign_office.reconnection(); debug_logger.log('Reestablished connection to: '); debug_logger.log(subscription.channel)},
+      connect : function(){foreign_office.connect(); debug_logger.log("Connected to: "); debug_logger.log(subscription.channel)},
+      message : function(m,env,channel){subscription.callback(m)}
     });
 
   }
