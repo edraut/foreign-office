@@ -118,7 +118,11 @@ var ForeignOfficeListener = Class.extend({
       var new_value = m.object[this.object_key];
       switch(this.$listener.get(0).nodeName.toLowerCase()){
         case 'input': case 'select':
-          this.$listener.val(new_value);
+          if(this.$listener.attr('type') == 'checkbox'){
+            this.$listener.prop('checked', new_value);
+          } else {
+            this.$listener.val(new_value);
+          }
         break;
 
         case 'img':
