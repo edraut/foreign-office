@@ -2,7 +2,6 @@
 //= require pubnub_bus
 //= require pusher_bus
 //= require test_bus
-//= require anytime_manager
 
 var ForeignOffice = Class.extend({
   init: function(){
@@ -189,4 +188,22 @@ var ForeignOfficeColor = ForeignOfficeListener.extend({
   }
 });
 
-any_time_manager.register('listener','addListener',foreign_office);
+function loadForeignOfficeClasses(){
+  window.any_time_manager.register('listener','addListener',foreign_office);
+  window.any_time_manager.load();
+};
+$(document).ready(function(){
+  if(typeof window.any_time_manager === "undefined" && typeof window.loading_any_time_manager === "undefined"){
+    window.loading_any_time_manager = true;
+    $.getScript("https://cdn.rawgit.com/edraut/anytime_manager/9f710d2280e68ea6156551728cb7e2d537a06ee6/anytime_manager.js",function(){
+      loadForeignOfficeClasses();
+    });
+  }else if(typeof window.any_time_manager === "undefined"){
+    if(typeof window.any_time_load_functions === 'undefined'){
+      window.any_time_load_functions = []
+    }
+    window.any_time_load_functions.push(loadForeignOfficeClasses);
+  }else{
+    loadForeignOfficeClasses();
+  }
+});
