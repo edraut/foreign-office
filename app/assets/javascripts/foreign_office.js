@@ -101,6 +101,10 @@ var ForeignOfficeListener = Class.extend({
         $.get(this.endpoint, function(data){
           $listener.html(data);
         })
+      }else if((typeof(m.object[this.object_key]) == 'string')){
+        $.get(m.object[this.object_key], function(data){
+          $listener.html(data);
+        })
       }
       if (m.object[this.delete_key] == true) {
         $listener.remove;
