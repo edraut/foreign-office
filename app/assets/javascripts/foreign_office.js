@@ -91,7 +91,7 @@ var ForeignOfficeListener = Class.extend({
     this.delete_key = $listener.data('delete-key');
     this.channel = $listener.data('channel');
     if(this.$listener.data('progress-indicator')){
-      this.progress_indicator = new AjaxProgress(this.$listener);
+      this.progress_indicator = new thin_man.AjaxProgress(this.$listener);
     }
   },
   handleMessage: function(m){
