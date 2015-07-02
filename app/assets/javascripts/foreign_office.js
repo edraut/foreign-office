@@ -17,6 +17,16 @@ var ForeignOffice = Class.extend({
       bus_class = TestBus
     }
     this.bus = new bus_class(config);
+    if(typeof config.disconnect_alert != 'undefined'){
+      this.disconnect_alert = config.disconnect_alert
+    } else {
+      this.disconnect_alert = 'We lost the connection to the server. No refresh data will be available. Thanks, -the Foreign Office.'
+    }
+    if(typeof config.reconnect_alert != 'undefined'){
+      this.reconnect_alert = config.reconnect_alert
+    } else {
+      this.reconnect_alert = "We're connected to the server again. Refresh data will now be available. Thanks, -the Foreign Office."
+    }
   },
   addListener: function($listener){
     var listener_class = eval(getSubClass($listener.data('listener'),'ForeignOfficeListener'));
@@ -41,13 +51,13 @@ var ForeignOffice = Class.extend({
   disconnection: function(){
     if('connected' == this.connection_status){
       this.connection_status = 'disconnected'
-      alert('We lost the connection to the server. No refresh data will be available. Thanks, -the Foreign Office.')
+      alert(this.disconnect_alert)
     }
   },
   reconnection: function(){
     if('disconnected' == this.connection_status){
       this.connection_status = 'connected'
-      alert("We're connected to the server again. Refresh data will now be available. Thanks, -the Foreign Office.")
+      alert(this.reconnect_alert)
     }
   }
 });
