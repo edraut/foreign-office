@@ -111,7 +111,9 @@ var ForeignOfficeListener = Class.extend({
         $.get(this.endpoint, function(data){
           $listener.html(data);
         })
-      }else if((typeof(m.object[this.object_key]) == 'string')){
+      }else if(m.object[this.object_key] == false) {
+        $listener.empty();
+      }else if(typeof(m.object[this.object_key]) == 'string'){
         $.get(m.object[this.object_key], function(data){
           $listener.html(data);
         })
