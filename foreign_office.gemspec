@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "app/assets/javascripts/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
   s.require_paths = ["lib"]
-  s.add_dependency "rails", ">= 4.0.1"
-  s.add_dependency "request_store"
+  s.add_dependency "rails", ">= 4.0.1", "< 5.0"
+  s.add_dependency "request_store", "< 2.0"
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "minitest"
+  s.add_development_dependency "sqlite3", "< 2.0"
+  s.add_development_dependency "minitest", "< 6.0"
 end

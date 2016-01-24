@@ -144,6 +144,10 @@ var ForeignOfficeListener = Class.extend({
           this.$listener.prop('src',new_value);
         break;
 
+        case 'progress':
+          this.$listener.attr('value',new_value)
+        break;
+
         default:
           if(this.$listener.data('trigger-on-message')){
             if(new_value){
