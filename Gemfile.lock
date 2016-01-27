@@ -105,8 +105,8 @@ PLATFORMS
 
 DEPENDENCIES
   foreign_office!
-  minitest
-  sqlite3
+  minitest (< 6.0)
+  sqlite3 (< 2.0)
 
 BUNDLED WITH
    1.10.6
