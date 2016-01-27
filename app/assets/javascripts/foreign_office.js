@@ -59,7 +59,11 @@ var ForeignOffice = Class.extend({
       this.connection_status = 'connected'
       alert(this.reconnect_alert)
     }
-  }
+  },
+  bind_listeners: function(){
+    window.any_time_manager.register('listener','addListener',this);
+    window.any_time_manager.load();
+  };
 });
 
 foreign_office = new ForeignOffice();
@@ -207,8 +211,3 @@ var ForeignOfficeColor = ForeignOfficeListener.extend({
      }
   }
 });
-
-function loadForeignOfficeClasses(){
-  window.any_time_manager.register('listener','addListener',foreign_office);
-  window.any_time_manager.load();
-};
