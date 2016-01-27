@@ -63,7 +63,7 @@ var ForeignOffice = Class.extend({
   bind_listeners: function(){
     window.any_time_manager.register('listener','addListener',this);
     window.any_time_manager.load();
-  };
+  }
 });
 
 foreign_office = new ForeignOffice();
