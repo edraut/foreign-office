@@ -154,8 +154,10 @@ var ForeignOfficeListener = Class.extend({
 
         default:
           if(this.$listener.data('trigger-on-message')){
-            if(new_value){
-              this.$listener.attr('href',new_value);
+            if(new_value && (new_value != 'false')){
+              if((new_value != true) && (new_value != 'true')){
+                this.$listener.attr('href',new_value);
+              }
               if(this.progress_indicator){
                 this.progress_indicator.stop();
               }

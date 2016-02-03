@@ -20,7 +20,7 @@ module ForeignOffice
       hash = {listener: true, channel: resource.class.name + resource.id.to_s, key: key}
       hash[:reveal_hide] = true if reveal_hide
       hash[:endpoint] = endpoint if endpoint
-      hash[:trigger] = true if trigger
+      hash[:trigger_on_message] = true if trigger
       hash
     end
   end
