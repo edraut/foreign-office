@@ -162,7 +162,7 @@ var ForeignOfficeListener = Class.extend({
                 this.progress_indicator.stop();
               }
               if(this.$listener.data('ajax-link')){
-                this.$listener.trigger('click');
+                this.$listener.trigger('apiclick');
               }else{
                 window.location = new_value;
               }
