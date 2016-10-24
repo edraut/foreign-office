@@ -1,4 +1,7 @@
 // This is a bit heavy for what it does, but should be super-easy to extend/enhance
+if(typeof console == 'undefined'){
+  console = {log: function(msg){alert(msg)}}
+}
 var DebugLogger = Class.extend({
   init: function($debug_settings){
     if($debug_settings.data('logging_on')){

@@ -2,6 +2,7 @@
 //= require pubnub_bus
 //= require pusher_bus
 //= require test_bus
+//= require underscore-min.js
 
 var ForeignOffice = Class.extend({
   init: function(){
@@ -9,13 +10,20 @@ var ForeignOffice = Class.extend({
     this.channels_by_name = [];
   },
   config: function(config){
+    debug_logger.log("Using Foreign Office js config:")
+    debug_logger.log(config);
     bus_class = eval(config.bus_name);
+
     try {
-      eval(bus_class.third_party_library)
+      bus_class_name = bus_class.third_party_library
+      eval(bus_class_name)
     }
     catch(err){
+      console.log('WARNING: ' + bus_class.third_party_library + ' is not defined!')
+      bus_class_name = 'TestBus'
       bus_class = TestBus
     }
+    debug_logger.log("Connecting to message bus using " + bus_class_name)
     this.bus = new bus_class(config);
     if(typeof config.disconnect_alert != 'undefined'){
       this.disconnect_alert = config.disconnect_alert
