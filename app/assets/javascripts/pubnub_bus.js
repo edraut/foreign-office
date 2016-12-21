@@ -13,7 +13,7 @@ var PubnubBus = Class.extend({
     var disconnect_func = function(){
       foreign_office.disconnection(); debug_logger.log('Lost connection to: '); debug_logger.log(subscription.channel)
     };
-    var debounced_disconnect = _.debounce(disconnect_func, 750); //Don't alert unless we're disconnected for 750ms, this avoids alerting on a normal page load.
+    var debounced_disconnect = _.debounce(disconnect_func, 2000); //Don't alert unless we're disconnected for 750ms, this avoids alerting on a normal page load.
     this.pubnub.subscribe({
       channel : subscription.channel,
       restore : true,
