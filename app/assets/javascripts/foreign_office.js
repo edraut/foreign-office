@@ -111,6 +111,7 @@ var ForeignOfficeListener = Class.extend({
     this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
     this.delete_key = $listener.data('delete-key');
+    this.href_target = $listener.data('href-target')
     this.channel = $listener.data('channel');
     if(this.$listener.data('progress-indicator')){
       this.progress_indicator = new thin_man.AjaxProgress(this.$listener);
@@ -131,7 +132,7 @@ var ForeignOfficeListener = Class.extend({
         })
       }
       if (m.object[this.delete_key] == true) {
-        $listener.remove;
+        $listener.remove();
       }
     }else if(this.reveal_hide){
       var current_value = m.object[this.object_key];
@@ -141,15 +142,21 @@ var ForeignOfficeListener = Class.extend({
         this.$listener.removeClass('hidden');
         this.$listener.show();
       }
+    }else if(this.href_target){
+      this.$listener.attr('href',m.object[this.object_key])
     }else{
       var new_value = m.object[this.object_key];
       switch(this.$listener.get(0).nodeName.toLowerCase()){
-        case 'input': case 'select':
+        case 'input':
           if(this.$listener.attr('type') == 'checkbox'){
             this.$listener.prop('checked', new_value);
           } else {
             this.$listener.val(new_value);
           }
+        break;
+        case 'select':
+          this.$listener.find('option[value="' + new_value + '"]').attr('selected','selected')
+          this.$listener.trigger("chosen:updated")
         break;
 
         case 'img':
@@ -175,6 +182,8 @@ var ForeignOfficeListener = Class.extend({
                 window.location = new_value;
               }
             }
+          }else if (m.object[this.delete_key] == true) {
+            $listener.remove();
           }else{
             this.$listener.html(new_value);
           }
