@@ -101,6 +101,21 @@ var ForeignOfficeChannel = Class.extend({
   },
   addListener: function(listener){
     this.listeners.push(listener);
+    //need to ensure forms are last in the list, so that inputs 
+    //will be updated before forms are submitted
+    //NB. this will only work if the form and its inputs share the same channel
+    //since we can't control the order of channel messages coming across the wire
+    this.listeners.sort(function(a,b){
+      var a_kind = a.$listener.get(0).nodeName.toLowerCase()
+      var b_kind = b.$listener.get(0).nodeName.toLowerCase()
+      if(('form' != a_kind) && ('form' == b_kind)){
+        return -1
+      }
+      if(('form' == a_kind) && ('form' != b_kind)){
+        return 1
+      }
+      return 0 //('form' == a_kind) && ('form' == b_kind)
+    })
   }
 });
 
@@ -119,6 +134,9 @@ var ForeignOfficeListener = Class.extend({
   },
   handleMessage: function(m){
     var $listener = this.$listener;
+    if(!m.object.hasOwnProperty(this.object_key) && !m.object.hasOwnProperty(this.delete_key)){
+      return true
+    }
     if(this.endpoint){
       if (m.object[this.object_key] == true) {
         $.get(this.endpoint, function(data){
@@ -155,7 +173,9 @@ var ForeignOfficeListener = Class.extend({
           }
         break;
         case 'select':
-          this.$listener.find('option[value="' + new_value + '"]').attr('selected','selected')
+          if(this.$listener.val() != ('' + new_value)){
+            this.$listener.val('' + new_value).change()
+          }
           this.$listener.trigger("chosen:updated")
         break;
 
@@ -178,6 +198,8 @@ var ForeignOfficeListener = Class.extend({
               }
               if(this.$listener.data('ajax-link')){
                 this.$listener.trigger('apiclick');
+              }else if(this.$listener.data('ajax-form')){
+                this.$listener.trigger('apisubmit');
               }else{
                 window.location = new_value;
               }
