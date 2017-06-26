@@ -2,12 +2,12 @@
 //= require pubnub_bus
 //= require pusher_bus
 //= require test_bus
-//= require underscore-min.js
 
 var ForeignOffice = Class.extend({
   init: function(){
     this.channels = [];
     this.channels_by_name = [];
+    this.session_id = $('meta[name="client_id"]').attr('content')
   },
   config: function(config){
     debug_logger.log("Using Foreign Office js config:")
