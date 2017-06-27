@@ -12,13 +12,9 @@ var PubnubBus = Class.extend({
       debug_logger.log("about to unload page")
       pubnubbus.unsubscribe()
     };
-  },
-  subscribe: function(subscription){
-    debug_logger.log("subscribing with PubnubBus")
-    debug_logger.log(subscription)
     this.pubnub.addListener({
       message : function(m){
-        subscription.callback(m.message)
+        foreign_office.handleMessage(m)
       },
       status: function(s){
         debug_logger.log("Foreign Office PubnubBus:")
@@ -42,6 +38,10 @@ var PubnubBus = Class.extend({
         }
       }
     });
+  },
+  subscribe: function(subscription){
+    debug_logger.log("subscribing with PubnubBus")
+    debug_logger.log(subscription)
     this.pubnub.subscribe({
       channels : [subscription.channel]
     });

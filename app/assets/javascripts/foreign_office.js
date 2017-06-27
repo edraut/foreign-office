@@ -68,6 +68,10 @@ var ForeignOffice = Class.extend({
       alert(this.reconnect_alert)
     }
   },
+  //If the bus broadcasts the channel as part of the message...
+  handleMessage: function(m){
+    this.channels_by_name[m.channel].handleMessage(m.message)
+  },
   bind_listeners: function(){
     window.any_time_manager.register('listener','addListener',this);
     window.any_time_manager.load();
@@ -83,6 +87,7 @@ var ForeignOfficeChannel = Class.extend({
     debug_logger.log(channel_name);
     foreign_office.bus.subscribe({
       channel : channel_name,
+      //If the bus binds the callback to the channel object...
       callback : function(m){
         foreign_office_channel.handleMessage(m)
       }
