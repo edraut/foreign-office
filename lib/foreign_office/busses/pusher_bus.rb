@@ -1,8 +1,7 @@
 class ForeignOffice::Busses::PusherBus < ForeignOffice::Busses::GenericBus
   def self.config(config)
-    self.app_id = config[:app_id]
-    self.key = config[:key]
-    self.secret = config[:secret]
+    # Pusher now pulls config directly from the ENV
+    Pusher.encrypted = true
   end
 
   def self.app_id=(app_id)
@@ -30,11 +29,7 @@ class ForeignOffice::Busses::PusherBus < ForeignOffice::Busses::GenericBus
   end
   
   def self.connection
-    @pusher ||= Pusher::Client.new({
-      app_id: self.app_id,
-      key: self.key,
-      secret: self.secret
-    })
+    @pusher ||= Pusher
   end
 
   def self.publish(message)

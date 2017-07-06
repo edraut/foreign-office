@@ -1,6 +1,9 @@
 var PusherBus = Class.extend({
   init: function(config){
-    this.pusher = new Pusher(config.key);
+    delete config.bus_name
+    var key = config.key
+    delete config.key
+    this.pusher = new Pusher(key, config);
   },
   subscribe: function(subscription){
     this.channel = this.pusher.subscribe(subscription.channel);

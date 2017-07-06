@@ -35,7 +35,7 @@ class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
       publish_key:    self.publish_key, # publish_key only required if publishing.
       subscribe_key:  self.subscribe_key, # required
       secret_key:     self.secret_key,
-      error_callback: lambda { |msg| Rails.logger.error( msg.inspect )}
+      ssl:            true
     )
   end
 
