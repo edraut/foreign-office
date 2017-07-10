@@ -34,10 +34,15 @@ class ForeignOffice::Busses::PusherBus < ForeignOffice::Busses::GenericBus
 
   def self.publish(message)
     message.symbolize_keys!
+    channel = sanitize_channel(message[:channel])
     self.connection.trigger(
-      message[:channel],
+      channel,
       'publish',
       message
     )
+  end
+
+  def self.sanitize_channel(channel)
+    channel.gsub(/::/,'.')
   end
 end
