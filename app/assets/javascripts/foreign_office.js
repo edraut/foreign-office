@@ -106,7 +106,7 @@ var ForeignOfficeChannel = Class.extend({
   },
   addListener: function(listener){
     this.listeners.push(listener);
-    //need to ensure forms are last in the list, so that inputs 
+    //need to ensure forms are last in the list, so that inputs
     //will be updated before forms are submitted
     //NB. this will only work if the form and its inputs share the same channel
     //since we can't control the order of channel messages coming across the wire
@@ -131,7 +131,8 @@ var ForeignOfficeListener = Class.extend({
     this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
     this.delete_key = $listener.data('delete-key');
-    this.href_target = $listener.data('href-target')
+    this.href_target = $listener.data('href-target');
+    this.create_modal = $listener.data('create-modal');
     this.channel = $listener.data('channel');
     if(this.$listener.data('progress-indicator')){
       this.progress_indicator = new thin_man.AjaxProgress(this.$listener);
@@ -167,6 +168,12 @@ var ForeignOfficeListener = Class.extend({
       }
     }else if(this.href_target){
       this.$listener.attr('href',m.object[this.object_key])
+    }else if(this.create_modal){
+      var $modal_content = $('<div>').html($(this.create_modal).html());
+      var modal = new hooch.Modal($modal_content);
+      modal.$dismisser.remove();
+      delete modal.dismisser;
+      delete modal.$dismisser;
     }else{
       var new_value = m.object[this.object_key];
       switch(this.$listener.get(0).nodeName.toLowerCase()){
