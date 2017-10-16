@@ -40,7 +40,9 @@ module ForeignOffice
   def self.publish(message)
     Rails.logger.debug("ForeignOffice.publish: #{message.inspect}")
     if !!@cache_messages
-      RequestStore.store[:foreign_office_messages][message[:channel]] = message
+      foreign_office_messages = RequestStore.store[:foreign_office_messages]
+      channel_name = message[:channel]
+      foreign_office_messages[channel_name] = message
     else
       self.handle_publish_request(message)
     end
