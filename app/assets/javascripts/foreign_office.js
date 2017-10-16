@@ -127,6 +127,8 @@ var ForeignOfficeChannel = Class.extend({
 var ForeignOfficeListener = Class.extend({
   init: function($listener){
     this.$listener = $listener;
+    $listener.data('foreign_office.ForeignOfficeListener', this)
+    this.enabled = true
     this.endpoint = $listener.data('endpoint');
     this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
@@ -139,93 +141,95 @@ var ForeignOfficeListener = Class.extend({
     }
   },
   handleMessage: function(m){
-    var $listener = this.$listener;
-    if(!m.object.hasOwnProperty(this.object_key) && !m.object.hasOwnProperty(this.delete_key)){
-      return true
-    }
-    if(this.endpoint){
-      if (m.object[this.object_key] == true) {
-        $.get(this.endpoint, function(data){
-          $listener.html(data);
-        })
-      }else if(m.object[this.object_key] == false) {
-        $listener.empty();
-      }else if(typeof(m.object[this.object_key]) == 'string'){
-        $.get(m.object[this.object_key], function(data){
-          $listener.html(data);
-        })
+    if(this.enabled){
+      var $listener = this.$listener;
+      if(!m.object.hasOwnProperty(this.object_key) && !m.object.hasOwnProperty(this.delete_key)){
+        return true
       }
-      if (m.object[this.delete_key] == true) {
-        $listener.remove();
-      }
-    }else if(this.reveal_hide){
-      var current_value = m.object[this.object_key];
-      if(!current_value || current_value == 'false' || current_value == 'hide'){
-        this.$listener.hide();
-      } else {
-        this.$listener.removeClass('hidden');
-        this.$listener.show();
-      }
-    }else if(this.href_target){
-      this.$listener.attr('href',m.object[this.object_key])
-    }else if(this.create_modal){
-      var $modal_content = $('<div>').html($(this.create_modal).html());
-      var modal = new hooch.Modal($modal_content);
-      modal.$dismisser.remove();
-      delete modal.dismisser;
-      delete modal.$dismisser;
-    }else{
-      var new_value = m.object[this.object_key];
-      switch(this.$listener.get(0).nodeName.toLowerCase()){
-        case 'input':
-          if(this.$listener.attr('type') == 'checkbox'){
-            this.$listener.prop('checked', new_value);
-          } else {
-            this.$listener.val(new_value);
-          }
-        break;
-        case 'select':
-          if(this.$listener.val() != ('' + new_value)){
-            this.$listener.val('' + new_value).change()
-          }
-          this.$listener.trigger("chosen:updated")
-        break;
-
-        case 'img':
-          this.$listener.prop('src',new_value);
-        break;
-
-        case 'progress':
-          this.$listener.attr('value',new_value)
-        break;
-
-        default:
-          if(this.$listener.data('trigger-on-message')){
-            if(new_value && (new_value != 'false')){
-              if((new_value != true) && (new_value != 'true')){
-                this.$listener.attr('href',new_value);
-              }
-              if(this.progress_indicator){
-                this.progress_indicator.stop();
-              }
-              if(this.$listener.data('ajax-link')){
-                this.$listener.trigger('apiclick');
-              }else if(this.$listener.data('ajax-form')){
-                this.$listener.trigger('apisubmit');
-              }else{
-                window.location = new_value;
-              }
+      if(this.endpoint){
+        if (m.object[this.object_key] == true) {
+          $.get(this.endpoint, function(data){
+            $listener.html(data);
+          })
+        }else if(m.object[this.object_key] == false) {
+          $listener.empty();
+        }else if(typeof(m.object[this.object_key]) == 'string'){
+          $.get(m.object[this.object_key], function(data){
+            $listener.html(data);
+          })
+        }
+        if (m.object[this.delete_key] == true) {
+          $listener.remove();
+        }
+      }else if(this.reveal_hide){
+        var current_value = m.object[this.object_key];
+        if(!current_value || current_value == 'false' || current_value == 'hide'){
+          this.$listener.hide();
+        } else {
+          this.$listener.removeClass('hidden');
+          this.$listener.show();
+        }
+      }else if(this.href_target){
+        this.$listener.attr('href',m.object[this.object_key])
+      }else if(this.create_modal){
+        var $modal_content = $('<div>').html($(this.create_modal).html());
+        var modal = new hooch.Modal($modal_content);
+        modal.$dismisser.remove();
+        delete modal.dismisser;
+        delete modal.$dismisser;
+      }else{
+        var new_value = m.object[this.object_key];
+        switch(this.$listener.get(0).nodeName.toLowerCase()){
+          case 'input':
+            if(this.$listener.attr('type') == 'checkbox'){
+              this.$listener.prop('checked', new_value);
+            } else {
+              this.$listener.val(new_value);
             }
-          }else if (m.object[this.delete_key] == true) {
-            $listener.remove();
-          }else{
-            this.$listener.html(new_value);
-          }
-        break;
+          break;
+          case 'select':
+            if(this.$listener.val() != ('' + new_value)){
+              this.$listener.val('' + new_value).change()
+            }
+            this.$listener.trigger("chosen:updated")
+          break;
+
+          case 'img':
+            this.$listener.prop('src',new_value);
+          break;
+
+          case 'progress':
+            this.$listener.attr('value',new_value)
+          break;
+
+          default:
+            if(this.$listener.data('trigger-on-message')){
+              if(new_value && (new_value != 'false')){
+                if((new_value != true) && (new_value != 'true')){
+                  this.$listener.attr('href',new_value);
+                }
+                if(this.progress_indicator){
+                  this.progress_indicator.stop();
+                }
+                if(this.$listener.data('ajax-link')){
+                  this.$listener.trigger('apiclick');
+                }else if(this.$listener.data('ajax-form')){
+                  this.$listener.trigger('apisubmit');
+                }else{
+                  window.location = new_value;
+                }
+              }
+            }else if (m.object[this.delete_key] == true) {
+              $listener.remove();
+            }else{
+              this.$listener.html(new_value);
+            }
+          break;
+        }
       }
+      this.getForeignOfficeProgressIndicator();
+      this.removeProgressIndicator();
     }
-    this.getForeignOfficeProgressIndicator();
-    this.removeProgressIndicator();
   },
   getForeignOfficeProgressIndicator: function(){
     var this_listener = this;
@@ -241,6 +245,9 @@ var ForeignOfficeListener = Class.extend({
         new AjaxFlash('success',this.foreign_office_flash,this.$listener);
       }
     }
+  },
+  disable: function(){
+    this.enabled = false
   }
 });
 
