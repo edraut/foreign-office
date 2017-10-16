@@ -50,6 +50,10 @@ var ForeignOffice = Class.extend({
     }
     this_channel.addListener(listener);
   },
+  removeListener: function($listener){
+    let listener = $listener.data('foreign_office.ForeignOfficeListener')
+    listener.channel.removeListener(listener)
+  },
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
   },
@@ -121,12 +125,17 @@ var ForeignOfficeChannel = Class.extend({
       }
       return 0 //('form' == a_kind) && ('form' == b_kind)
     })
+  },
+  removeListener: function(listener){
+    listener_index = this.listeners.indexOf(listener)
+    this.listeners.splice(listener_index,1)
   }
 });
 
 var ForeignOfficeListener = Class.extend({
   init: function($listener){
     this.$listener = $listener;
+    $listener.data('foreign_office.ForeignOfficeListener',this)
     this.endpoint = $listener.data('endpoint');
     this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
