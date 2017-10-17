@@ -51,8 +51,8 @@ var ForeignOffice = Class.extend({
     this_channel.addListener(listener);
   },
   removeListener: function($listener){
-    let listener = $listener.data('foreign_office.ForeignOfficeListener')
-    listener.channel.removeListener(listener)
+    let listener = $listener.data('foreign_office.ForeignOfficeListener');
+    listener.getChannelObject().removeListener(listener)
   },
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
@@ -242,6 +242,9 @@ var ForeignOfficeListener = Class.extend({
       this_listener.foreign_office_progress_indicator = $(this).data('foreign-office-progress-indicator-object');
       this_listener.foreign_office_flash = $(this).data('ajax-foreign-office-flash').notice;
     })
+  },
+  getChannelObject: function(){
+    return foreign_office.channels_by_name[this.channel];
   },
   removeProgressIndicator: function(){
     if(this.foreign_office_progress_indicator){
