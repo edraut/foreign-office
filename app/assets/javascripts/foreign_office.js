@@ -50,6 +50,10 @@ var ForeignOffice = Class.extend({
     }
     this_channel.addListener(listener);
   },
+  removeListener: function($listener){
+    let listener = $listener.data('foreign_office.ForeignOfficeListener');
+    listener.getChannelObject().removeListener(listener)
+  },
   channelNames: function(){
     return $.map(this.channels,function(channel){return channel.channel_name});
   },
@@ -106,7 +110,7 @@ var ForeignOfficeChannel = Class.extend({
   },
   addListener: function(listener){
     this.listeners.push(listener);
-    //need to ensure forms are last in the list, so that inputs 
+    //need to ensure forms are last in the list, so that inputs
     //will be updated before forms are submitted
     //NB. this will only work if the form and its inputs share the same channel
     //since we can't control the order of channel messages coming across the wire
@@ -121,17 +125,23 @@ var ForeignOfficeChannel = Class.extend({
       }
       return 0 //('form' == a_kind) && ('form' == b_kind)
     })
+  },
+  removeListener: function(listener){
+    listener_index = this.listeners.indexOf(listener)
+    this.listeners.splice(listener_index,1)
   }
 });
 
 var ForeignOfficeListener = Class.extend({
   init: function($listener){
     this.$listener = $listener;
+    $listener.data('foreign_office.ForeignOfficeListener',this)
     this.endpoint = $listener.data('endpoint');
     this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
     this.delete_key = $listener.data('delete-key');
-    this.href_target = $listener.data('href-target')
+    this.href_target = $listener.data('href-target');
+    this.create_modal = $listener.data('create-modal');
     this.channel = $listener.data('channel');
     if(this.$listener.data('progress-indicator')){
       this.progress_indicator = new thin_man.AjaxProgress(this.$listener);
@@ -167,6 +177,12 @@ var ForeignOfficeListener = Class.extend({
       }
     }else if(this.href_target){
       this.$listener.attr('href',m.object[this.object_key])
+    }else if(this.create_modal){
+      var $modal_content = $('<div>').html($(this.create_modal).html());
+      var modal = new hooch.Modal($modal_content);
+      modal.$dismisser.remove();
+      delete modal.dismisser;
+      delete modal.$dismisser;
     }else{
       var new_value = m.object[this.object_key];
       switch(this.$listener.get(0).nodeName.toLowerCase()){
@@ -226,6 +242,9 @@ var ForeignOfficeListener = Class.extend({
       this_listener.foreign_office_progress_indicator = $(this).data('foreign-office-progress-indicator-object');
       this_listener.foreign_office_flash = $(this).data('ajax-foreign-office-flash').notice;
     })
+  },
+  getChannelObject: function(){
+    return foreign_office.channels_by_name[this.channel];
   },
   removeProgressIndicator: function(){
     if(this.foreign_office_progress_indicator){
