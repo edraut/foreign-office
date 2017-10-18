@@ -51,7 +51,7 @@ var ForeignOffice = Class.extend({
     this_channel.addListener(listener);
   },
   removeListener: function($listener){
-    let listener = $listener.data('foreign_office.ForeignOfficeListener');
+    var listener = $listener.data('foreign_office.ForeignOfficeListener');
     listener.getChannelObject().removeListener(listener)
   },
   channelNames: function(){
