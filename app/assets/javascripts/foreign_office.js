@@ -178,11 +178,13 @@ var ForeignOfficeListener = Class.extend({
     }else if(this.href_target){
       this.$listener.attr('href',m.object[this.object_key])
     }else if(this.create_modal){
-      var $modal_content = $('<div>').html($(this.create_modal).html());
-      var modal = new hooch.Modal($modal_content);
-      modal.$dismisser.remove();
-      delete modal.dismisser;
-      delete modal.$dismisser;
+      if (m.object[this.object_key] == true) {
+        var $modal_content = $('<div>').html($(this.create_modal).html());
+        var modal = new hooch.Modal($modal_content);
+        modal.$dismisser.remove();
+        delete modal.dismisser;
+        delete modal.$dismisser;
+      }
     }else{
       var new_value = m.object[this.object_key];
       switch(this.$listener.get(0).nodeName.toLowerCase()){
