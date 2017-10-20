@@ -153,11 +153,13 @@ var ForeignOfficeListener = Class.extend({
       return true
     }
     if(this.endpoint){
+      let $progress_target = null
+      if($listener.data('progress-target')){
+        $progress_target = $($listener.data('progress-target'))
+      } else {
+        $progress_target = []
+      }
       if (m.object[this.object_key] == true) {
-        let $progress_target = null
-        if($listener.data('progress-target').length > 0){
-          $progress_target = $($listener.data('progress-target'))
-        }
         let progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
         $.get(this.endpoint, function(data){
           $listener.html(data);
@@ -167,7 +169,7 @@ var ForeignOfficeListener = Class.extend({
       }else if(m.object[this.object_key] == false) {
         $listener.empty();
       }else if(typeof(m.object[this.object_key]) == 'string'){
-        let progress_indicator = new thin_man.AjaxProgress($listener,$listener,'black')
+        let progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
         $.get(m.object[this.object_key], function(data){
           $listener.html(data);
         }).always(function(){
