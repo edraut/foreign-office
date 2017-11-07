@@ -1,3 +1,3 @@
 module ForeignOffice
-  VERSION = "0.15.8"
+  VERSION = "0.15.10"
 end

@@ -153,14 +153,14 @@ var ForeignOfficeListener = Class.extend({
       return true
     }
     if(this.endpoint){
-      let $progress_target = null
+      var $progress_target = null
       if($listener.data('progress-target')){
         $progress_target = $($listener.data('progress-target'))
       } else {
         $progress_target = []
       }
       if (m.object[this.object_key] == true) {
-        let progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
+        var progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
         $.get(this.endpoint, function(data){
           $listener.html(data);
         }).always(function(){
@@ -169,7 +169,7 @@ var ForeignOfficeListener = Class.extend({
       }else if(m.object[this.object_key] == false) {
         $listener.empty();
       }else if(typeof(m.object[this.object_key]) == 'string'){
-        let progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
+        var progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
         $.get(m.object[this.object_key], function(data){
           $listener.html(data);
         }).always(function(){
@@ -223,7 +223,7 @@ var ForeignOfficeListener = Class.extend({
         break;
 
         default:
-          if(this.$listener.data('trigger-on-message')){
+          if(this.$listener.data('trigger-on-message') || this.$listener.data('download')){
             if(new_value && (new_value != 'false')){
               if((new_value != true) && (new_value != 'true')){
                 this.$listener.attr('href',new_value);
@@ -235,6 +235,8 @@ var ForeignOfficeListener = Class.extend({
                 this.$listener.trigger('apiclick');
               }else if(this.$listener.data('ajax-form')){
                 this.$listener.trigger('apisubmit');
+              }else if(this.$listener.data('download')){
+                window.open(new_value);
               }else{
                 window.location = new_value;
               }
@@ -252,20 +254,16 @@ var ForeignOfficeListener = Class.extend({
   },
   getForeignOfficeProgressIndicator: function(){
     var this_listener = this;
-    $('[data-foreign-office-progress-indicator="' + this.channel + '"]').each(function(){
-      this_listener.foreign_office_progress_indicator = $(this).data('foreign-office-progress-indicator-object');
-      this_listener.foreign_office_flash = $(this).data('ajax-foreign-office-flash').notice;
+    $('[data-foreign-office-progress-indicator][data-channel="' + this.channel + '"][data-key="' + this.object_key + '"]').each(function(){
+      this_listener.$foreign_office_progress_indicator = $(this);
     })
   },
   getChannelObject: function(){
     return foreign_office.channels_by_name[this.channel];
   },
   removeProgressIndicator: function(){
-    if(this.foreign_office_progress_indicator){
-      this.foreign_office_progress_indicator.stop();
-      if(this.foreign_office_flash){
-        new AjaxFlash('success',this.foreign_office_flash,this.$listener);
-      }
+    if(this.$foreign_office_progress_indicator){
+      this.$foreign_office_progress_indicator.remove()
     }
   }
 });
