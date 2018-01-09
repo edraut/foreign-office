@@ -1,7 +1,7 @@
 var PubnubBus = Class.extend({
   init: function(config){
     var pubnubbus = this
-    debug_logger.log("initializing pubnub js with client id: " + foreign_office.session_id)
+    debug_logger.log("initializing pubnub js with client id: " + foreign_office.session_id, 1, 'foreign-office')
     this.pubnub = new PubNub({
       publish_key   : config.publish_key,
       subscribe_key : config.subscribe_key,
@@ -9,7 +9,7 @@ var PubnubBus = Class.extend({
       uuid          : foreign_office.session_id
     });
     window.onbeforeunload = function (e) {
-      debug_logger.log("about to unload page")
+      debug_logger.log("about to unload page", 1, 'foreign-office')
       pubnubbus.unsubscribe()
     };
     this.pubnub.addListener({
@@ -17,8 +17,8 @@ var PubnubBus = Class.extend({
         foreign_office.handleMessage(m)
       },
       status: function(s){
-        debug_logger.log("Foreign Office PubnubBus:")
-        debug_logger.log(s)
+        debug_logger.log("Foreign Office PubnubBus:", 1, 'foreign-office')
+        debug_logger.log(s, 1, 'foreign-office')
         if( s.operation === 'PNUnsubscribeOperation' ||
             s.operation === 'PNSubscribeOperation'){return}
 
@@ -26,28 +26,28 @@ var PubnubBus = Class.extend({
             s.category === 'PNUnexpectedDisconnectCategory' ||
             s.category === 'PNNetworkIssuesCategory' ||
             s.category === 'PNNetworkDownCategory'){
-          debug_logger.log("Network disconnected.")
-          foreign_office.disconnection(); debug_logger.log('Lost connection to: '); debug_logger.log(subscription.channel)
+          debug_logger.log("Network disconnected.", 1, 'foreign-office')
+          foreign_office.disconnection(); debug_logger.log('Lost connection to: ', 1, 'foreign-office'); debug_logger.log(subscription.channel, 1, 'foreign-office')
         }
         if( s.category === 'PNReconnectedCategory' ||
             s.category === 'PNNetworkUpCategory'){
-          foreign_office.reconnection(); debug_logger.log('Reestablished connection to: '); debug_logger.log(subscription.channel)
+          foreign_office.reconnection(); debug_logger.log('Reestablished connection to: ', 1, 'foreign-office'); debug_logger.log(subscription.channel, 1, 'foreign-office')
         }
         if(s.category === 'PNConnectedCategory'){
-          foreign_office.connect(); debug_logger.log("Connected to: "); debug_logger.log(subscription.channel)
+          foreign_office.connect(); debug_logger.log("Connected to: ", 1, 'foreign-office'); debug_logger.log(subscription.channel, 1, 'foreign-office')
         }
       }
     });
   },
   subscribe: function(subscription){
-    debug_logger.log("subscribing with PubnubBus")
-    debug_logger.log(subscription)
+    debug_logger.log("subscribing with PubnubBus", 1, 'foreign-office')
+    debug_logger.log(subscription, 1, 'foreign-office')
     this.pubnub.subscribe({
       channels : [subscription.channel]
     });
   },
   unsubscribe: function(){
-    debug_logger.log("unsubscribing all pubnub channels")
+    debug_logger.log("unsubscribing all pubnub channels", 1, 'foreign-office')
     this.pubnub.unsubscribeAll();
   }
 })
