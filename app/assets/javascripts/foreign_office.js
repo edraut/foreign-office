@@ -10,9 +10,9 @@ var ForeignOffice = Class.extend({
     this.session_id = $('meta[name="client_id"]').attr('content')
   },
   config: function(config){
-    debug_logger.log("Using Foreign Office js config:")
-    debug_logger.log(config);
-    bus_class = eval(config.bus_name);
+    debug_logger.log("Using Foreign Office js config:", 1, 'foreign-office')
+    debug_logger.log(config, 1, 'foreign-office');
+    bus_class = eval(config.bus_name, 1);
 
     try {
       bus_class_name = bus_class.third_party_library
@@ -23,7 +23,7 @@ var ForeignOffice = Class.extend({
       bus_class_name = 'TestBus'
       bus_class = TestBus
     }
-    debug_logger.log("Connecting to message bus using " + bus_class_name)
+    debug_logger.log("Connecting to message bus using " + bus_class_name, 1, 'foreign-office')
     this.bus = new bus_class(config);
     if(typeof config.disconnect_alert != 'undefined'){
       this.disconnect_alert = config.disconnect_alert
@@ -87,8 +87,8 @@ foreign_office = new ForeignOffice();
 var ForeignOfficeChannel = Class.extend({
   init: function(channel_name){
     var foreign_office_channel = this;
-    debug_logger.log("Subscribing to: ");
-    debug_logger.log(channel_name);
+    debug_logger.log("Subscribing to: ", 1, 'foreign-office');
+    debug_logger.log(channel_name, 1, 'foreign-office');
     foreign_office.bus.subscribe({
       channel : channel_name,
       //If the bus binds the callback to the channel object...
@@ -100,11 +100,11 @@ var ForeignOfficeChannel = Class.extend({
     this.listeners = [];
   },
   handleMessage: function(m){
-    debug_logger.log("Got a message: ");
-    debug_logger.log(m);
+    debug_logger.log("Got a message: ", 1, 'foreign-office');
+    debug_logger.log(m, 1, 'foreign-office');
     $.each(this.listeners,function(i,listener){
-      debug_logger.log("sending message to listener: ");
-      debug_logger.log(listener);
+      debug_logger.log("sending message to listener: ", 1, 'foreign-office');
+      debug_logger.log(listener, 1, 'foreign-office');
       listener.handleMessage(m);
     })
   },
