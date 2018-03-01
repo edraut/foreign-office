@@ -142,38 +142,44 @@ var ForeignOfficeListener = Class.extend({
     this.delete_key = $listener.data('delete-key');
     this.href_target = $listener.data('href-target');
     this.create_modal = $listener.data('create-modal');
+    this.mask_me = $listener.data('mask-me');
     this.channel = $listener.data('channel');
     if(this.$listener.data('progress-indicator')){
       this.progress_indicator = new thin_man.AjaxProgress(this.$listener);
     }
   },
+  maskMe: function(){
+    if(this.mask_me)
+    this.mask = new thin_man.AjaxMask(this.$listener,'')
+  },
+  unMaskMe: function(){
+    if(this.mask){
+      this.mask.remove()
+      delete this.mask
+    }
+  },
   handleMessage: function(m){
     var $listener = this.$listener;
+    var listener = this
     if(!m.object.hasOwnProperty(this.object_key) && !m.object.hasOwnProperty(this.delete_key)){
       return true
     }
     if(this.endpoint){
-      var $progress_target = null
-      if($listener.data('progress-target')){
-        $progress_target = $($listener.data('progress-target'))
-      } else {
-        $progress_target = []
-      }
       if (m.object[this.object_key] == true) {
-        var progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
+        listener.maskMe()
         $.get(this.endpoint, function(data){
           $listener.html(data);
         }).always(function(){
-          progress_indicator.stop()
+          listener.unMaskMe()
         })
       }else if(m.object[this.object_key] == false) {
         $listener.empty();
       }else if(typeof(m.object[this.object_key]) == 'string'){
-        var progress_indicator = new thin_man.AjaxProgress($progress_target,$listener,'black')
+        listener.maskMe()
         $.get(m.object[this.object_key], function(data){
           $listener.html(data);
         }).always(function(){
-          progress_indicator.stop()
+          listener.unMaskMe()          
         })
       }
       if (m.object[this.delete_key] == true) {
