@@ -136,6 +136,7 @@ var ForeignOfficeListener = Class.extend({
   init: function($listener){
     this.$listener = $listener;
     $listener.data('foreign_office.ForeignOfficeListener',this)
+    this.exclude_value = $listener.data('exclude-value');
     this.endpoint = $listener.data('endpoint');
     this.reveal_hide = $listener.data('reveal-hide');
     this.object_key = $listener.data('key');
@@ -161,11 +162,13 @@ var ForeignOfficeListener = Class.extend({
   handleMessage: function(m){
     var $listener = this.$listener;
     var listener = this
-    if(!m.object.hasOwnProperty(this.object_key) && !m.object.hasOwnProperty(this.delete_key)){
+    var message_value = m.object[this.object_key]
+    if((!m.object.hasOwnProperty(this.object_key) && !m.object.hasOwnProperty(this.delete_key)) ||
+      (this.exclude_value && message_value == this.exclude_value)){
       return true
     }
     if(this.endpoint){
-      if (m.object[this.object_key] == true) {
+      if (message_value == true) {
         listener.maskMe()
         $.get(this.endpoint, function(data){
           $listener.html(data);
@@ -174,29 +177,28 @@ var ForeignOfficeListener = Class.extend({
         })
       }else if(m.object[this.object_key] == false) {
         $listener.empty();
-      }else if(typeof(m.object[this.object_key]) == 'string'){
+      }else if(typeof(message_value) == 'string'){
         listener.maskMe()
-        $.get(m.object[this.object_key], function(data){
+        $.get(message_value, function(data){
           $listener.html(data);
         }).always(function(){
           listener.unMaskMe()          
         })
       }
-      if (m.object[this.delete_key] == true) {
+      if (message_value == true) {
         $listener.remove();
       }
     }else if(this.reveal_hide){
-      var current_value = m.object[this.object_key];
-      if(!current_value || current_value == 'false' || current_value == 'hide'){
+      if(!message_value || message_value == 'false' || message_value == 'hide'){
         this.$listener.hide();
       } else {
         this.$listener.removeClass('hidden');
         this.$listener.show();
       }
     }else if(this.href_target){
-      this.$listener.attr('href',m.object[this.object_key])
+      this.$listener.attr('href',message_value)
     }else if(this.create_modal){
-      if (m.object[this.object_key] == true) {
+      if (message_value && message_value != 'false') {
         var $modal_content = $('<div>').html($(this.create_modal).html());
         var modal = new hooch.Modal($modal_content);
         modal.$dismisser.remove();
@@ -204,35 +206,34 @@ var ForeignOfficeListener = Class.extend({
         delete modal.$dismisser;
       }
     }else{
-      var new_value = m.object[this.object_key];
       switch(this.$listener.get(0).nodeName.toLowerCase()){
         case 'input':
           if(this.$listener.attr('type') == 'checkbox'){
-            this.$listener.prop('checked', new_value);
+            this.$listener.prop('checked', message_value);
           } else {
-            this.$listener.val(new_value);
+            this.$listener.val(message_value);
           }
         break;
         case 'select':
-          if(this.$listener.val() != ('' + new_value)){
-            this.$listener.val('' + new_value).change()
+          if(this.$listener.val() != ('' + message_value)){
+            this.$listener.val('' + message_value).change()
           }
           this.$listener.trigger("chosen:updated")
         break;
 
         case 'img':
-          this.$listener.prop('src',new_value);
+          this.$listener.prop('src',message_value);
         break;
 
         case 'progress':
-          this.$listener.attr('value',new_value)
+          this.$listener.attr('value',message_value)
         break;
 
         default:
           if(this.$listener.data('trigger-on-message') || this.$listener.data('download')){
-            if(new_value && (new_value != 'false')){
-              if((new_value != true) && (new_value != 'true')){
-                this.$listener.attr('href',new_value);
+            if(message_value && (message_value != 'false')){
+              if((message_value != true) && (message_value != 'true')){
+                this.$listener.attr('href',message_value);
               }
               if(this.progress_indicator){
                 this.progress_indicator.stop();
@@ -242,15 +243,15 @@ var ForeignOfficeListener = Class.extend({
               }else if(this.$listener.data('ajax-form')){
                 this.$listener.trigger('apisubmit');
               }else if(this.$listener.data('download')){
-                window.open(new_value);
+                window.open(message_value);
               }else{
-                window.location = new_value;
+                window.location = message_value;
               }
             }
           }else if (m.object[this.delete_key] == true) {
             $listener.remove();
           }else{
-            this.$listener.html(new_value);
+            this.$listener.html(message_value);
           }
         break;
       }
