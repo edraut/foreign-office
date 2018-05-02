@@ -185,7 +185,7 @@ var ForeignOfficeListener = Class.extend({
           listener.unMaskMe()          
         })
       }
-      if (message_value == true) {
+      if (m.object[this.delete_key] == true) {
         $listener.remove();
       }
     }else if(this.reveal_hide){
