@@ -43,7 +43,7 @@ class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
     message.symbolize_keys!
     channel = message[:channel]
 
-    if browser_tab_id = mesage[:browser_tab_id]
+    if browser_tab_id = message[:browser_tab_id]
       channel += "@#{browser_tab_id}" 
     end
 
