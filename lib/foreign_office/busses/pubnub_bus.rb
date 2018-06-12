@@ -41,8 +41,14 @@ class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
 
   def self.publish(message)
     message.symbolize_keys!
+    channel = message[:channel]
+
+    if browser_tab_id = mesage[:browser_tab_id]
+      channel += "@#{browser_tab_id}" 
+    end
+
     self.connection.publish(
-      channel:  message[:channel],
+      channel:  channel,
       message:  message,
       http_sync: true
     ) do |envelope|

@@ -2,8 +2,10 @@ module ForeignOffice
   module ForeignOfficeHelper
     def listener_attrs(resource, key, reveal_hide: false, endpoint: nil, download: nil,
       trigger: nil, delete: nil, href_target: nil, create_modal: nil, mask_me: nil,
-      exclude_value: nil)
-      data_attrs = "data-listener=true data-channel=#{resource.class.name}#{resource.id}"
+      exclude_value: nil, browser_tab_id: nil )
+      channel = "#{resource.class.name}#{resource.id}"
+      channel += "@#{browser_tab_id}" if browser_tab_id
+      data_attrs = "data-listener=true data-channel=#{channel}"
       if delete
         data_attrs += " data-delete-key=#{key}"
       else
@@ -27,7 +29,8 @@ module ForeignOffice
 
     def listener_attrs_raw(channel, key, reveal_hide: false, endpoint: nil, download: nil,
       trigger: nil, delete: nil, href_target: nil, create_modal: nil, mask_me: nil,
-      exclude_value: nil)
+      exclude_value: nil, browser_tab_id: nil)
+      channel += "@#{browser_tab_id}" if browser_tab_id
       data_attrs = "data-listener=true data-channel=#{channel}"
       if delete
         data_attrs += " data-delete-key=#{key}"
@@ -47,8 +50,10 @@ module ForeignOffice
 
     def listener_hash(resource, key, reveal_hide: false, endpoint: nil, download: nil,
       trigger: nil, delete: nil, href_target: nil, create_modal: nil, mask_me: nil,
-      exclude_value: nil)
-      hash = {listener: true, channel: resource.class.name + resource.id.to_s}
+      exclude_value: nil, browser_tab_id: nil)
+      channel = resource.class.name + resource.id
+      channel += "@#{browser_tab_id}" if browser_tab_id
+      hash = {listener: true, channel: channel}
       if delete
         hash[:delete_key] = key
       else
@@ -67,7 +72,8 @@ module ForeignOffice
 
     def listener_hash_raw(channel, key, reveal_hide: false, endpoint: nil, download: nil,
       trigger: nil, delete: nil, href_target: nil, create_modal: nil, mask_me: nil,
-      exclude_value: nil)
+      exclude_value: nil, browser_tab_id: nil)
+      channel += "@#{browser_tab_id}" if browser_tab_id
       hash = {listener: true, channel: channel}
       if delete
         hash[:delete_key] = key
