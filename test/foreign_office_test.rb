@@ -2,12 +2,10 @@ require 'test_helper'
 
 class ForeignOfficeTest < MiniTest::Unit::TestCase
   describe "ForeignOffice" do
-    before do
-      @bus = Minitest::Mock.new
-      ForeignOffice.bus = @bus
-    end
     describe "caches messages when asked" do
       before do
+        @bus = Minitest::Mock.new
+        ForeignOffice.bus = @bus
         ForeignOffice.cache_messages
       end
       it "caches multiple messages" do
@@ -30,6 +28,10 @@ class ForeignOfficeTest < MiniTest::Unit::TestCase
       end
     end
     describe "doesn't have to cache" do
+      before do
+        @bus = Minitest::Mock.new
+        ForeignOffice.bus = @bus
+      end
       it "publishes messages directly when not caching" do
         ForeignOffice.publish_directly
         @bus.expect :publish, nil, [{channel: 'TestMe', object: {this: 'is a test'}}]
@@ -38,6 +40,10 @@ class ForeignOfficeTest < MiniTest::Unit::TestCase
       end
     end
     describe "offers custom publishing" do
+      before do
+        @bus = Minitest::Mock.new
+        ForeignOffice.bus = @bus
+      end
       it "publishes with a custom method if provided" do
         ForeignOffice.publish_directly
         @bus.expect :custom_publish, nil, [{channel: 'TestMe', object: {this: 'is a test'}}]
@@ -45,6 +51,59 @@ class ForeignOfficeTest < MiniTest::Unit::TestCase
         ForeignOffice.publish({channel: 'TestMe', object: {this: 'is a test'}})
         @bus.verify
         ForeignOffice.unset_publish_method
+      end
+    end
+    describe "passing browser tab id to pusher" do
+      before do
+        ForeignOffice.unset_publish_method
+        ForeignOffice.publish_directly
+      end
+
+      it "publishes with browser id appended" do
+        ForeignOffice.config({bus: {klass: ForeignOffice::Busses::PusherBus}})
+        resp = ForeignOffice.publish({channel: "TestMe", object: {this: 'is a test'}, browser_tab_id: 'tab-id-123'})
+        resp[:channel].must_equal("TestMe@tab-id-123")
+      end
+
+      it "published without browser id appended" do
+        ForeignOffice.config({bus: {klass: ForeignOffice::Busses::PusherBus}})
+        resp = ForeignOffice.publish({channel: "TestMe", object: {this: 'is a test'}})
+        resp[:channel].must_equal("TestMe")
+      end
+    end
+    describe "passing browser tab id to pubnub" do
+      before do
+        ForeignOffice.unset_publish_method
+        ForeignOffice.publish_directly
+      end
+
+      it "published with browser id appended" do
+        ForeignOffice.config(
+          {
+            bus: {
+              klass: ForeignOffice::Busses::PubnubBus, 
+              publish_key: "1234", 
+              subscribe_key: '5678', 
+              secret_key: '91011'
+            }
+          }
+        )
+        resp = ForeignOffice.publish({channel: "TestMe", object: {this: 'is a test'}, browser_tab_id: 'tab-id-123'})
+        resp[:channel].must_equal "TestMe@tab-id-123"
+      end
+      it "published without browser id appended" do
+        ForeignOffice.config(
+          {
+            bus: {
+              klass: ForeignOffice::Busses::PubnubBus, 
+              publish_key: "1234", 
+              subscribe_key: '5678', 
+              secret_key: '91011'
+            }
+          }
+        )
+        resp = ForeignOffice.publish({channel: "TestMe", object: {this: 'is a test'}})
+        resp[:channel].must_equal "TestMe"
       end
     end
   end
