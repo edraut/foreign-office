@@ -40,7 +40,6 @@ class ForeignOffice::Busses::PubnubBus < ForeignOffice::Busses::GenericBus
   end
 
   def self.publish(message)
-    message.symbolize_keys!
     channel = message[:channel]
 
     if browser_tab_id = message[:browser_tab_id]
