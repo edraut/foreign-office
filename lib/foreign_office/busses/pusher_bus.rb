@@ -35,6 +35,11 @@ class ForeignOffice::Busses::PusherBus < ForeignOffice::Busses::GenericBus
   def self.publish(message)
     message.symbolize_keys!
     channel = sanitize_channel(message[:channel])
+    
+    if browser_tab_id = message[:browser_tab_id]
+      channel += "@#{browser_tab_id}"
+    end
+
     self.connection.trigger(
       channel,
       'publish',
