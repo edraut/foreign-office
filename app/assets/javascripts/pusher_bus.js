@@ -13,6 +13,24 @@ var PusherBus = Class.extend({
   },
   get_channel_name: function(channel_name){
     return channel_name.replace(/::/g, '.')
+  },
+  bind_state_change: function(){
+    this.pusher.connection.bind('state_change', function(states){
+      if(states.previous === "connected" && states.current === "connecting"){
+        reload_page();
+      }
+    });
+    this.pusher.connection.bind('disconnected', function(){
+      reload_page();
+    });
   }
-})
+
+});
+
+var reload_page = function(){
+  if (
+    window.confirm('The pusher connection has been lost. Click ok to refresh the page.')
+  ) { window.location.reload()}
+};
+
 PusherBus.third_party_library = 'Pusher'

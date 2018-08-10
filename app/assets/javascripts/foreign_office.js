@@ -25,6 +25,7 @@ var ForeignOffice = Class.extend({
     }
     debug_logger.log("Connecting to message bus using " + bus_class_name, 1, 'foreign-office')
     this.bus = new bus_class(config);
+    this.bus.bind_state_change()
     if(typeof config.disconnect_alert != 'undefined'){
       this.disconnect_alert = config.disconnect_alert
     } else {
