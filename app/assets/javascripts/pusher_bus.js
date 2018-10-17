@@ -15,13 +15,16 @@ var PusherBus = Class.extend({
     return channel_name.replace(/::/g, '.')
   },
   bind_state_change: function(){
-    this.pusher.connection.bind('state_change', function(states){
-      if(states.previous === "connected" && states.current === "connecting"){
-        reload_page();
+    this.pusher.connection.bind( 'error', function( err ) {
+      debug_logger.log(err.error)
+    })
+
+    this.pusher.connection.bind('state_change', function(states) {
+      // states = {previous: 'oldState', current: 'newState'}
+      debug_logger.log("Pusher connection current state is " + states.current, 1, 'foreign-office');
+      if('unavailable' == states.current){
+        reload_page()
       }
-    });
-    this.pusher.connection.bind('disconnected', function(){
-      reload_page();
     });
   }
 

@@ -6,7 +6,7 @@
 var ForeignOffice = Class.extend({
   init: function(){
     this.channels = [];
-    this.channels_by_name = [];
+    this.channels_by_name = {};
     this.session_id = $('meta[name="client_id"]').attr('content')
   },
   config: function(config){

@@ -9,10 +9,12 @@ module ForeignOffice
 
       def broadcast_change
         Rails.logger.debug "Broadcasting change for #{self.inspect}..."
-        Rails.logger.debug "Class name: #{self.class.name}"
-        Rails.logger.debug "ID: #{self.id}"
         Rails.logger.debug "Serialize: #{self.serialize}"
-        ForeignOffice.publish(channel: "#{self.class.name}#{self.id}", object: self.serialize)
+        if self.class.channel_presence_required?
+          PresenceChannelPublishJob.set(wait: 1).perform_later(id, self.class.name, self.serialize)
+        else
+          ForeignOffice.publish(channel: "#{self.class.name}#{self.id}", object: self.serialize)
+        end
       rescue => e
         Rails.logger.error "Failed to broadcast change: #{e.inspect}"
         Rails.logger.debug e.backtrace.join("\n")
@@ -28,6 +30,15 @@ module ForeignOffice
       def broadcast_changes!
         self.send(:after_save, :handle_broadcast, {unless: :skip_all_callbacks})
       end
+
+      def require_channel_presence
+        @channel_presence_required = true
+      end
+
+      def channel_presence_required?
+        @channel_presence_required
+      end
     end
+
   end
 end
