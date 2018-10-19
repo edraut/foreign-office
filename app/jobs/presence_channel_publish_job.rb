@@ -4,8 +4,9 @@ class PresenceChannelPublishJob < ApplicationJob
   def perform(obj_id, obj_class_name, serialized_state)
     serialized_state.symbolize_keys!
     channel_name = "presence-#{obj_class_name}#{obj_id}"
-    channel_presence = ForeignOffice.bus.connection.channel_users(channel_name)
-    if channel_presence[:users].any?
+    if (!ForeignOffice.bus.connection.respond_to?(:channel_users) ||
+        ForeignOffice.bus.connection.channel_users(channel_name)[:users].any?)
+
       ForeignOffice.publish(
         channel: channel_name,
         object: serialized_state
