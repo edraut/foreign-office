@@ -13,7 +13,7 @@ class PresenceChannelPublishJob < ApplicationJob
       )
     else
       serialized_state[:foreign_office_retries] ||= 0
-      if serialized_state[:foreign_office_retries] < 4 # four total tries
+      if serialized_state[:foreign_office_retries] < 5 # five total tries
         retry_wait = 2**serialized_state[:foreign_office_retries]
         serialized_state[:foreign_office_retries] += 1
         PresenceChannelPublishJob.set(wait: retry_wait).perform_later(obj_id, obj_class_name, serialized_state)
