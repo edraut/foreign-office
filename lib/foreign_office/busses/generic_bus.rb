@@ -1,6 +1,8 @@
 module ForeignOffice
   module Busses
     class GenericBus
+      @@messages = []
+      
       def self.flush_messages
         @@messages = []
       end
