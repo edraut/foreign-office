@@ -2,9 +2,9 @@ module ForeignOffice
   module ForeignOfficeHelper
     def listener_attrs(resource, key, reveal_hide: false, endpoint: nil, download: nil,
       trigger: nil, delete: nil, href_target: nil, create_modal: nil, mask_me: nil,
-      exclude_value: nil, browser_tab_id: nil, presence: false )
-      presence_prefix = presence ? 'presence-' : ''
-      channel = "#{presence_prefix}#{resource.class.name}#{resource.id}"
+      exclude_value: nil, browser_tab_id: nil)
+      presence_prefix = resource.class.channel_presence_required? ? 'presence-' : ''
+      channel = "#{presence_prefix}#{resource.class.foreign_office_channel_prefix}#{resource.id}"
       channel += "@#{browser_tab_id}" if browser_tab_id
       data_attrs = "data-listener=true data-channel=#{channel}"
       if delete
@@ -24,7 +24,7 @@ module ForeignOffice
     end
 
     def progress_indicator_attrs(resource, key)
-      data_attrs = "data-foreign-office-progress-indicator=true data-channel=#{resource.class.name}#{resource.id}"
+      data_attrs = "data-foreign-office-progress-indicator=true data-channel=#{resource.class.foreign_office_channel_prefix}#{resource.id}"
       data_attrs += " data-key=#{key}"
     end
 
@@ -51,9 +51,9 @@ module ForeignOffice
 
     def listener_hash(resource, key, reveal_hide: false, endpoint: nil, download: nil,
       trigger: nil, delete: nil, href_target: nil, create_modal: nil, mask_me: nil,
-      exclude_value: nil, browser_tab_id: nil, presence: false)
-      presence_prefix = presence ? 'presence-' : ''
-      channel = "#{presence_prefix}#{resource.class.name}#{resource.id}"
+      exclude_value: nil, browser_tab_id: nil)
+      presence_prefix = resource.class.channel_presence_required? ? 'presence-' : ''
+      channel = "#{presence_prefix}#{resource.class.foreign_office_channel_prefix}#{resource.id}"
       channel += "@#{browser_tab_id}" if browser_tab_id
       hash = {listener: true, channel: channel}
       if delete

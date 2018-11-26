@@ -13,7 +13,7 @@ module ForeignOffice
         if self.class.channel_presence_required?
           PresenceChannelPublishJob.set(wait: 1).perform_later(id, self.class.name, self.serialize)
         else
-          ForeignOffice.publish(channel: "#{self.class.name}#{self.id}", object: self.serialize)
+          ForeignOffice.publish(channel: "#{self.class.foreign_office_channel_prefix}#{self.id}", object: self.serialize)
         end
       rescue => e
         Rails.logger.error "Failed to broadcast change: #{e.inspect}"
@@ -38,6 +38,11 @@ module ForeignOffice
       def channel_presence_required?
         @channel_presence_required
       end
+
+      def foreign_office_channel_prefix
+        self.name.gsub(/::/,'-')
+      end
+
     end
 
   end

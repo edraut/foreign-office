@@ -2,8 +2,12 @@ class PresenceChannelPublishJob < ApplicationJob
   queue_as :default
 
   def perform(obj_id, obj_class_name, serialized_state)
+    obj_class = obj_class_name.constantize
     serialized_state.symbolize_keys!
-    channel_name = "presence-#{obj_class_name}#{obj_id}"
+    channel_name = "presence-#{obj_class.foreign_office_channel_prefix}#{obj_id}"
+    if browser_tab_id = serialized_state[:browser_tab_id]
+      channel_name += "@#{browser_tab_id}"
+    end
     if (!ForeignOffice.bus.connection.respond_to?(:channel_users) ||
         ForeignOffice.bus.connection.channel_users(channel_name)[:users].any?)
 
